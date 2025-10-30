@@ -96,4 +96,19 @@ public class WinningLottoTest {
         //then
         Assertions.assertThat(matchCount).isEqualTo(expectMatchCount);
     }
+
+    @Test
+    @DisplayName("로또 번호 일치하는게 없다.")
+    void 로또_번호_일치하는게_없다() {
+        //given
+        List<Integer> winningNumbers = List.of(40,41,42,43,44,45);
+        int bonusNumber = 10;
+        WinningLotto winningLotto = new WinningLotto(winningNumbers, bonusNumber);
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        int expectMatchCount = 0;
+        //when
+        int matchCount = winningLotto.calculate(lotto);
+        //then
+        Assertions.assertThat(matchCount).isEqualTo(expectMatchCount);
+    }
 }
