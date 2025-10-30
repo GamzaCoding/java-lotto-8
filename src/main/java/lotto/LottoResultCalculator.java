@@ -12,6 +12,9 @@ public class LottoResultCalculator {
         if (lottoResultDto.lottoMatchCount() == 5 && !lottoResultDto.bonusCorrect()) {
             return 1_500_000;
         }
+        if (lottoResultDto.lottoMatchCount() == 4) {
+            return 50_000;
+        }
         return 0;
     }
 }
