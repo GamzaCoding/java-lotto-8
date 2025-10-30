@@ -23,18 +23,47 @@ public class WinningLottoTest {
     }
 
     @Test
-    @DisplayName("로또 번호 5개가 일치한다.")
-    void 로또_번호_5개가_일치한다() {
+    @DisplayName("로또 번호 5개가 일치한다_보너스_번호_일치")
+    void 로또_번호_5개가_일치한다_보너스_번호_일치() {
         //given
         List<Integer> winningNumbers = List.of(1,2,3,4,5,45);
         int bonusNumber = 10;
+
         WinningLotto winningLotto = new WinningLotto(winningNumbers, bonusNumber);
-        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 10));
+
         int expectMatchCount = 5;
+        boolean expectBonusCorrect = true;
+
         //when
         int matchCount = winningLotto.calculate(lotto);
+        boolean bonusCorrect = winningLotto.checkBonus(lotto);
+
         //then
-        Assertions.assertThat(matchCount).isEqualTo(expectMatchCount);
+        Assertions.assertThat(expectMatchCount).isEqualTo(matchCount);
+        Assertions.assertThat(expectBonusCorrect).isEqualTo(bonusCorrect);
+    }
+
+    @Test
+    @DisplayName("로또 번호 5개가 일치한다_보너스_번호_불일치")
+    void 로또_번호_5개가_일치한다_보너스_번호_불일치() {
+        //given
+        List<Integer> winningNumbers = List.of(1,2,3,4,5,45);
+        int bonusNumber = 10;
+
+        WinningLotto winningLotto = new WinningLotto(winningNumbers, bonusNumber);
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+
+        int expectMatchCount = 5;
+        boolean expectBonusCorrect = false;
+
+        //when
+        int matchCount = winningLotto.calculate(lotto);
+        boolean bonusCorrect = winningLotto.checkBonus(lotto);
+
+        //then
+        Assertions.assertThat(expectMatchCount).isEqualTo(matchCount);
+        Assertions.assertThat(expectBonusCorrect).isEqualTo(bonusCorrect);
     }
 
     @Test
