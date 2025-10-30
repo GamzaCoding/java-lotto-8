@@ -26,4 +26,14 @@ public class InputViewTest {
         assertThatThrownBy(() -> Validation.validateNegative(inputLottoPurchaseMoney))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    @DisplayName("로또 구입 금액이 1,000원으로 나누어 떨어지지 않으면 예외가 발생한다.")
+    void 로또_구입_금액이_1000원으로_나누어_떨어지지_않으면_예외가_발생한다() {
+        //given
+        String inputLottoPurchaseMoney = "1001";
+        //then
+        assertThatThrownBy(() -> Validation.validateDivisibleByThousand(inputLottoPurchaseMoney))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
