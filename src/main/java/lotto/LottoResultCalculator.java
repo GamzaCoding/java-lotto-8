@@ -6,6 +6,9 @@ public class LottoResultCalculator {
         if (lottoResultDto.lottoMatchCount() == 6) {
             return 2_000_000_000;
         }
+        if (lottoResultDto.lottoMatchCount() == 5 && lottoResultDto.bonusCorrect()) {
+            return 30_000_000;
+        }
         return 0;
     }
 }

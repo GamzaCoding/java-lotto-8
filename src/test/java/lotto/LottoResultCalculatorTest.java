@@ -40,5 +40,4 @@ public class LottoResultCalculatorTest {
         //then
         assertThat(expectResultAmount).isEqualTo(resultAmount);
     }
-
 }

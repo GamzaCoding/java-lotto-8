@@ -141,4 +141,6 @@ public class WinningLottoTest {
         //then
         assertThat(matchCount).isEqualTo(expectMatchCount);
     }
+
+    // winning 로또 번호화 보너스 번호가 중복되는 지 테스트
 }
