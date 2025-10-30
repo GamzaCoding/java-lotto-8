@@ -13,7 +13,7 @@ public class WinningLotto {
         this.bonusNumber = bonusNumber;
     }
 
-    public int calculate(Lotto lotto) {
+    public int calculateMatchCount(Lotto lotto) {
         return (int) lotto.getNumbers().stream()
                 .filter(winningNumbers::contains)
                 .count();

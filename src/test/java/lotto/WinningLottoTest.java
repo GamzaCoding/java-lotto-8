@@ -18,7 +18,7 @@ public class WinningLottoTest {
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         int expectMatchCount = 6;
         //when
-        int matchCount = winningLotto.calculate(lotto);
+        int matchCount = winningLotto.calculateMatchCount(lotto);
         //then
         assertThat(matchCount).isEqualTo(expectMatchCount);
     }
@@ -37,7 +37,7 @@ public class WinningLottoTest {
         boolean expectBonusCorrect = true;
 
         //when
-        int matchCount = winningLotto.calculate(lotto);
+        int matchCount = winningLotto.calculateMatchCount(lotto);
         boolean bonusCorrect = winningLotto.checkBonus(lotto);
 
         //then
@@ -59,7 +59,7 @@ public class WinningLottoTest {
         boolean expectBonusCorrect = false;
 
         //when
-        int matchCount = winningLotto.calculate(lotto);
+        int matchCount = winningLotto.calculateMatchCount(lotto);
         boolean bonusCorrect = winningLotto.checkBonus(lotto);
 
         //then
@@ -77,7 +77,7 @@ public class WinningLottoTest {
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         int expectMatchCount = 4;
         //when
-        int matchCount = winningLotto.calculate(lotto);
+        int matchCount = winningLotto.calculateMatchCount(lotto);
         //then
         assertThat(matchCount).isEqualTo(expectMatchCount);
     }
@@ -92,7 +92,7 @@ public class WinningLottoTest {
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         int expectMatchCount = 3;
         //when
-        int matchCount = winningLotto.calculate(lotto);
+        int matchCount = winningLotto.calculateMatchCount(lotto);
         //then
         assertThat(matchCount).isEqualTo(expectMatchCount);
     }
@@ -107,7 +107,7 @@ public class WinningLottoTest {
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         int expectMatchCount = 2;
         //when
-        int matchCount = winningLotto.calculate(lotto);
+        int matchCount = winningLotto.calculateMatchCount(lotto);
         //then
         assertThat(matchCount).isEqualTo(expectMatchCount);
     }
@@ -122,7 +122,7 @@ public class WinningLottoTest {
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         int expectMatchCount = 1;
         //when
-        int matchCount = winningLotto.calculate(lotto);
+        int matchCount = winningLotto.calculateMatchCount(lotto);
         //then
         assertThat(matchCount).isEqualTo(expectMatchCount);
     }
@@ -137,7 +137,7 @@ public class WinningLottoTest {
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         int expectMatchCount = 0;
         //when
-        int matchCount = winningLotto.calculate(lotto);
+        int matchCount = winningLotto.calculateMatchCount(lotto);
         //then
         assertThat(matchCount).isEqualTo(expectMatchCount);
     }
