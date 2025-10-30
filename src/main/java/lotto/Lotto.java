@@ -26,15 +26,13 @@ public class Lotto {
     }
 
     private void validateLottoNumberRange(List<Integer> numbers) {
-        if (isViolate(numbers)) {
+        if (!isCorrectRange(numbers)) {
             throw  new IllegalArgumentException("[ERROR] 로또 번호는 1~45 사이어야 합니다.");
         }
     }
 
-    private boolean isViolate(List<Integer> numbers) {
-        long size = numbers.stream()
-                .filter(number -> number <= 0 || number >= 46)
-                .count();
-        return size > 0;
+    private boolean isCorrectRange(List<Integer> numbers) {
+        return numbers.stream()
+                .allMatch(number -> 1 <= number && number <= 45);
     }
 }
