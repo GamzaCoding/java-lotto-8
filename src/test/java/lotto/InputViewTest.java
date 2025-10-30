@@ -13,7 +13,17 @@ public class InputViewTest {
         //given
         String inputLottoPurchaseMoney = "abcde";
         //then
-        assertThatThrownBy(() -> Validation.validateIsNumber(inputLottoPurchaseMoney))
+        assertThatThrownBy(() -> Validation.validateNumberValue(inputLottoPurchaseMoney))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    @DisplayName("로또 구입 금액 입력이 음수인 경우 예외가 발생한다")
+    void 로또_구입_금액_입력이_음수인_경우_예외가_발생한다() {
+        //given
+        String inputLottoPurchaseMoney = "-1000";
+        //then
+        assertThatThrownBy(() -> Validation.validateNegative(inputLottoPurchaseMoney))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }
