@@ -13,7 +13,7 @@ public class WinningLottoTest {
         //given
         List<Integer> winningNumbers = List.of(1,2,3,4,5,6);
         int bonusNumber = 10;
-        WinningLotto winningLotto = new WinningLotto(List<Integer> winningNumbers, int bonusNumber);
+        WinningLotto winningLotto = new WinningLotto(winningNumbers, bonusNumber);
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         int expectMatchCount = 6;
         //when
