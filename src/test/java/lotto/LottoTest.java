@@ -42,4 +42,11 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
 
     }
+
+    @Test
+    @DisplayName("로또 번호의 숫자가 0일 경우 예외가 발생한다.")
+    void 로또_번호의_숫자가_0일_경우_예외가_발생한다() {
+        assertThatThrownBy(() -> new Lotto(List.of(0, 2, 3, 4, 5, 6)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
