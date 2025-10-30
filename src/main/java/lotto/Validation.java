@@ -7,4 +7,10 @@ public class Validation {
             throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 숫자를 입력해야 합니다.");
         }
     }
+
+    public static void validateNegative(String inputLottoPurchaseMoney) {
+        if(Integer.parseInt(inputLottoPurchaseMoney) < 0) {
+            throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 음수를 입력할 수 없습니다.");
+        }
+    }
 }
