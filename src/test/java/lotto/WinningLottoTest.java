@@ -1,7 +1,8 @@
 package lotto;
 
+import static org.assertj.core.api.Assertions.*;
+
 import java.util.List;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -19,7 +20,7 @@ public class WinningLottoTest {
         //when
         int matchCount = winningLotto.calculate(lotto);
         //then
-        Assertions.assertThat(matchCount).isEqualTo(expectMatchCount);
+        assertThat(matchCount).isEqualTo(expectMatchCount);
     }
 
     @Test
@@ -40,8 +41,8 @@ public class WinningLottoTest {
         boolean bonusCorrect = winningLotto.checkBonus(lotto);
 
         //then
-        Assertions.assertThat(expectMatchCount).isEqualTo(matchCount);
-        Assertions.assertThat(expectBonusCorrect).isEqualTo(bonusCorrect);
+        assertThat(expectMatchCount).isEqualTo(matchCount);
+        assertThat(expectBonusCorrect).isEqualTo(bonusCorrect);
     }
 
     @Test
@@ -62,8 +63,8 @@ public class WinningLottoTest {
         boolean bonusCorrect = winningLotto.checkBonus(lotto);
 
         //then
-        Assertions.assertThat(expectMatchCount).isEqualTo(matchCount);
-        Assertions.assertThat(expectBonusCorrect).isEqualTo(bonusCorrect);
+        assertThat(expectMatchCount).isEqualTo(matchCount);
+        assertThat(expectBonusCorrect).isEqualTo(bonusCorrect);
     }
 
     @Test
@@ -78,7 +79,7 @@ public class WinningLottoTest {
         //when
         int matchCount = winningLotto.calculate(lotto);
         //then
-        Assertions.assertThat(matchCount).isEqualTo(expectMatchCount);
+        assertThat(matchCount).isEqualTo(expectMatchCount);
     }
 
     @Test
@@ -93,7 +94,7 @@ public class WinningLottoTest {
         //when
         int matchCount = winningLotto.calculate(lotto);
         //then
-        Assertions.assertThat(matchCount).isEqualTo(expectMatchCount);
+        assertThat(matchCount).isEqualTo(expectMatchCount);
     }
 
     @Test
@@ -108,7 +109,7 @@ public class WinningLottoTest {
         //when
         int matchCount = winningLotto.calculate(lotto);
         //then
-        Assertions.assertThat(matchCount).isEqualTo(expectMatchCount);
+        assertThat(matchCount).isEqualTo(expectMatchCount);
     }
 
     @Test
@@ -123,7 +124,7 @@ public class WinningLottoTest {
         //when
         int matchCount = winningLotto.calculate(lotto);
         //then
-        Assertions.assertThat(matchCount).isEqualTo(expectMatchCount);
+        assertThat(matchCount).isEqualTo(expectMatchCount);
     }
 
     @Test
@@ -138,6 +139,6 @@ public class WinningLottoTest {
         //when
         int matchCount = winningLotto.calculate(lotto);
         //then
-        Assertions.assertThat(matchCount).isEqualTo(expectMatchCount);
+        assertThat(matchCount).isEqualTo(expectMatchCount);
     }
 }
