@@ -57,4 +57,21 @@ public class LottoResultCalculatorTest {
         //then
         assertThat(expectResultAmount).isEqualTo(resultAmount);
     }
+
+    @Test
+    @DisplayName("4등 당첨 금액을 구한다.")
+    void _4등_당첨_금액을_구한다() {
+        //given
+        int lottoMatchCount = 4;
+        boolean bonusCorrect = false;
+        LottoResultDto lottoResultDto = new LottoResultDto(lottoMatchCount, bonusCorrect);
+        LottoResultCalculator lottoResultCalculator = new LottoResultCalculator();
+        long expectResultAmount = 50_000;
+
+        //when
+        long resultAmount = lottoResultCalculator.calculateResultAmount(lottoResultDto);
+
+        //then
+        assertThat(expectResultAmount).isEqualTo(resultAmount);
+    }
 }
