@@ -36,4 +36,19 @@ public class WinningLottoTest {
         //then
         Assertions.assertThat(matchCount).isEqualTo(expectMatchCount);
     }
+
+    @Test
+    @DisplayName("로또 번호 4개가 일치한다.")
+    void 로또_번호_4개가_일치한다() {
+        //given
+        List<Integer> winningNumbers = List.of(1,2,3,4,44,45);
+        int bonusNumber = 10;
+        WinningLotto winningLotto = new WinningLotto(winningNumbers, bonusNumber);
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        int expectMatchCount = 4;
+        //when
+        int matchCount = winningLotto.calculate(lotto);
+        //then
+        Assertions.assertThat(matchCount).isEqualTo(expectMatchCount);
+    }
 }
