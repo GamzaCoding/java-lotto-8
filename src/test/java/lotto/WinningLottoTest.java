@@ -142,5 +142,15 @@ public class WinningLottoTest {
         assertThat(matchCount).isEqualTo(expectMatchCount);
     }
 
-    // winning 로또 번호화 보너스 번호가 중복되는 지 테스트
+    @Test
+    @DisplayName("당첨 로또 번호와 보너스 번호가 중복되면 예외가 발생한다.")
+    void 당첨_로또_번호와_보너스_번호가_중복되면_예외가_발생한다() {
+        //given
+        List<Integer> winningNumbers = List.of(1,2,3,4,5,6);
+        int bonusNumber = 1;
+
+        // then
+        assertThatThrownBy(() -> new WinningLotto(winningNumbers, bonusNumber))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
