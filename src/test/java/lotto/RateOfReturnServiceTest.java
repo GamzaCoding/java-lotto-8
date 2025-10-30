@@ -1,6 +1,5 @@
 package lotto;
 
-import java.math.BigDecimal;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -17,10 +16,9 @@ public class RateOfReturnServiceTest {
         double expectedRateOfReturn = 677165.7;
 
         //when
-        BigDecimal rateOfReturn = rateOfReturnService.calculateRateOfReturn(inputLottoPurchaseMoney, totalLottoWinningAmount);
+        double rateOfReturn = rateOfReturnService.calculateRateOfReturn(inputLottoPurchaseMoney, totalLottoWinningAmount);
 
         //then
-        Assertions.assertThat(expectedRateOfReturn).isEqualTo(rateOfReturn.doubleValue());
-
+        Assertions.assertThat(expectedRateOfReturn).isEqualTo(rateOfReturn);
     }
 }
