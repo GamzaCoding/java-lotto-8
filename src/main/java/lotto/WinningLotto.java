@@ -8,6 +8,7 @@ public class WinningLotto {
     private final int bonusNumber;
 
     public WinningLotto(List<Integer> winningNumbers, int bonusNumber) {
+        validateBonusNumberNotInWinningNumbers(winningNumbers, bonusNumber);
         this.winningNumbers = winningNumbers;
         this.bonusNumber = bonusNumber;
     }
@@ -20,5 +21,11 @@ public class WinningLotto {
 
     public boolean checkBonus(Lotto lotto) {
         return lotto.getNumbers().contains(bonusNumber);
+    }
+
+    private void validateBonusNumberNotInWinningNumbers(List<Integer> winningNumbers, int bonusNumber) {
+        if (winningNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호와 당첨 로또 번호는 겹치면 안됩니다.");
+        }
     }
 }
