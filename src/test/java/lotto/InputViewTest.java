@@ -13,7 +13,7 @@ public class InputViewTest {
         //given
         String inputLottoPurchaseMoney = "abcde";
         //then
-        assertThatThrownBy(() -> Validation.valdateIsNumber(inputLottoPurchaseMoney))
+        assertThatThrownBy(() -> Validation.validateIsNumber(inputLottoPurchaseMoney))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }
