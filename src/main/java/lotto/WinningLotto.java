@@ -17,4 +17,8 @@ public class WinningLotto {
                 .filter(winningNumbers::contains)
                 .count();
     }
+
+    public boolean checkBonus(Lotto lotto) {
+        return lotto.getNumbers().contains(bonusNumber);
+    }
 }
