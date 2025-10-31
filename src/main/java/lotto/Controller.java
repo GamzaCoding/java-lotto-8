@@ -40,7 +40,7 @@ public class Controller {
         double totalRateOfReturn = RateOfReturnService.calculateRateOfReturn(startDto.getInputMoney(), totalWinningMoney); // 총 수익률%
 
 
-
+        return null; // 이부분 부터 수정
     }
 
     private void result(WinningStatisticsDto winningStatisticsDto) {
