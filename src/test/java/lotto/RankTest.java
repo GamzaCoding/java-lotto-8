@@ -14,7 +14,7 @@ public class RankTest {
     void 로또_번호_6개_일치시_FIRST_RANK() {
         //given
         Lotto lotto = Lotto.makeLotto(List.of(1, 2, 3, 4, 5, 6));
-        WinningLotto winningLotto = new WinningLotto(List.of(1, 2, 3, 4, 5, 6), 10);
+        WinningLotto winningLotto = WinningLotto.makeWinningLotto(List.of(1, 2, 3, 4, 5, 6), 10);
 
         Rank expectRank = Rank.FIRST;
         //when
@@ -29,7 +29,7 @@ public class RankTest {
     void 로또_번호_5개_일치및_보너스번호_일치_시_SECOND_RANK() {
         //given
         Lotto lotto = Lotto.makeLotto(List.of(1, 2, 3, 4, 5, 10));
-        WinningLotto winningLotto = new WinningLotto(List.of(1, 2, 3, 4, 5, 6), 10);
+        WinningLotto winningLotto = WinningLotto.makeWinningLotto(List.of(1, 2, 3, 4, 5, 6), 10);
 
         Rank expectRank = Rank.SECOND;
         //when
@@ -44,7 +44,7 @@ public class RankTest {
     void 로또_번호_5개_일치및_보너스번호_미일치_시_THIRD_RANK() {
         //given
         Lotto lotto = Lotto.makeLotto(List.of(1, 2, 3, 4, 5, 6));
-        WinningLotto winningLotto = new WinningLotto(List.of(1, 2, 3, 4, 5, 7), 10);
+        WinningLotto winningLotto = WinningLotto.makeWinningLotto(List.of(1, 2, 3, 4, 5, 7), 10);
 
         Rank expectRank = Rank.THIRD;
         //when
@@ -59,7 +59,7 @@ public class RankTest {
     void 로또_번호_4개_일치시_FOURTH_RANK() {
         //given
         Lotto lotto = Lotto.makeLotto(List.of(1, 2, 3, 4, 5, 6));
-        WinningLotto winningLotto = new WinningLotto(List.of(1, 2, 3, 4, 11, 12), 10);
+        WinningLotto winningLotto = WinningLotto.makeWinningLotto(List.of(1, 2, 3, 4, 11, 12), 10);
 
         Rank expectRank = Rank.FOURTH;
         //when
@@ -74,7 +74,7 @@ public class RankTest {
     void 로또_번호_3개_일치시_FIFTh_RANK() {
         //given
         Lotto lotto = Lotto.makeLotto(List.of(1, 2, 3, 11, 12, 13));
-        WinningLotto winningLotto = new WinningLotto(List.of(1, 2, 3, 4, 5, 6), 10);
+        WinningLotto winningLotto = WinningLotto.makeWinningLotto(List.of(1, 2, 3, 4, 5, 6), 10);
 
         Rank expectRank = Rank.FIFTH;
         //when
@@ -89,7 +89,7 @@ public class RankTest {
     void 로또_번호_2개_일치시_ZERO_RANK() {
         //given
         Lotto lotto = Lotto.makeLotto(List.of(1, 2, 11, 12, 13, 14));
-        WinningLotto winningLotto = new WinningLotto(List.of(1, 2, 3, 4, 5, 6), 10);
+        WinningLotto winningLotto = WinningLotto.makeWinningLotto(List.of(1, 2, 3, 4, 5, 6), 10);
 
         Rank expectRank = Rank.ZER0;
         //when
@@ -104,7 +104,7 @@ public class RankTest {
     void 로또_번호_1개_일치시_ZERO_RANK() {
         //given
         Lotto lotto = Lotto.makeLotto(List.of(1, 11, 12, 13, 14, 15));
-        WinningLotto winningLotto = new WinningLotto(List.of(1, 2, 3, 4, 5, 6), 10);
+        WinningLotto winningLotto = WinningLotto.makeWinningLotto(List.of(1, 2, 3, 4, 5, 6), 10);
 
         Rank expectRank = Rank.ZER0;
         //when
@@ -119,7 +119,7 @@ public class RankTest {
     void 로또_번호_0개_일치시_ZERO_RANK() {
         //given
         Lotto lotto = Lotto.makeLotto(List.of(10, 11, 12, 13, 14, 15));
-        WinningLotto winningLotto = new WinningLotto(List.of(1, 2, 3, 4, 5, 6), 10);
+        WinningLotto winningLotto = WinningLotto.makeWinningLotto(List.of(1, 2, 3, 4, 5, 6), 10);
 
         Rank expectRank = Rank.ZER0;
         //when

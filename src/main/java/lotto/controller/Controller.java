@@ -2,8 +2,7 @@ package lotto.controller;
 
 import java.util.Map;
 import lotto.view.InputView;
-import lotto.service.LottoResultService;
-import lotto.service.LottoTotalService;
+import lotto.service.LottoMainService;
 import lotto.model.Lottos;
 import lotto.view.OutputView;
 import lotto.model.Rank;
@@ -26,10 +25,8 @@ public class Controller {
         outputView.printPurchaseAmountMessage();
         String inputPurchaseAmount = inputView.inputPurchaseAmount();
         long inputPurchaseAmountLong = Long.parseLong(inputPurchaseAmount);  // 구매한 금액
-        LottoTotalService lottoTotalService = new LottoTotalService(inputPurchaseAmountLong);
 
-
-        Lottos lottos = lottoTotalService.getLottos(); // 입력한 금액에 맞는 갯수의 랜덤한 로또들 생성
+        Lottos lottos = LottoMainService.purchaseLottos(inputPurchaseAmountLong); // 입력한 금액에 맞는 갯수의 랜덤한 로또들 생성
         outputView.printPurchaseCountMessage((int) inputPurchaseAmountLong);
 
         outputView.printPurchasedLotto(new PurchasedLottosDto(lottos));
@@ -48,9 +45,9 @@ public class Controller {
         Lottos lottos = startDto.getLottos();
         WinningLotto winningLotto = startDto.getWinningLotto();
 
-        LottoResultService lottoResultService = new LottoResultService(lottos, winningLotto);
+        LottoMainService lottoMainService = new LottoMainService(lottos, winningLotto);
 
-        long totalWinningMoney = lottoResultService.calculateTotalWinningAmount(); // 총 당첨금액 합산 금액
+        long totalWinningMoney = lottoMainService.calculateTotalWinningAmount(); // 총 당첨금액 합산 금액
 
         double totalRateOfReturn = RateOfReturnService.calculateRateOfReturn(inputMoney, totalWinningMoney); // 총 수익률%
         Map<Rank, Integer> rankAndCount = winningLotto.giveRankAndCount(lottos);

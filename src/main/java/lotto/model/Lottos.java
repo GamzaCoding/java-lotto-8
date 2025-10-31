@@ -10,10 +10,6 @@ public class Lottos {
         this.lottos = lottos;
     }
 
-    public List<Lotto> getLottos() {
-        return List.copyOf(lottos); // 얕은 복사 같은데.. 흠...
-    }
-
     public static Lottos createRandomLottos(long count) {
         List<Lotto> lottosByRandom = LongStream
                 .range(0, count)
@@ -25,5 +21,9 @@ public class Lottos {
 
     public static Lottos makeLottos(List<Lotto> lottos) {
         return new Lottos(lottos);
+    }
+
+    public List<Lotto> getLottos() {
+        return List.copyOf(lottos); // 얕은 복사 같은데.. 흠...
     }
 }

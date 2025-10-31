@@ -16,7 +16,7 @@ public class WinningLottoTest {
         //given
         List<Integer> winningNumbers = List.of(1,2,3,4,5,6);
         int bonusNumber = 10;
-        WinningLotto winningLotto = new WinningLotto(winningNumbers, bonusNumber);
+        WinningLotto winningLotto = WinningLotto.makeWinningLotto(winningNumbers, bonusNumber);
         Lotto lotto = Lotto.makeLotto(List.of(1, 2, 3, 4, 5, 6));
         int expectMatchCount = 6;
         //when
@@ -32,7 +32,7 @@ public class WinningLottoTest {
         List<Integer> winningNumbers = List.of(1,2,3,4,5,45);
         int bonusNumber = 10;
 
-        WinningLotto winningLotto = new WinningLotto(winningNumbers, bonusNumber);
+        WinningLotto winningLotto = WinningLotto.makeWinningLotto(winningNumbers, bonusNumber);
         Lotto lotto = Lotto.makeLotto(List.of(1, 2, 3, 4, 5, 10));
 
         int expectMatchCount = 5;
@@ -54,7 +54,7 @@ public class WinningLottoTest {
         List<Integer> winningNumbers = List.of(1,2,3,4,5,45);
         int bonusNumber = 10;
 
-        WinningLotto winningLotto = new WinningLotto(winningNumbers, bonusNumber);
+        WinningLotto winningLotto = WinningLotto.makeWinningLotto(winningNumbers, bonusNumber);
         Lotto lotto = Lotto.makeLotto(List.of(1, 2, 3, 4, 5, 6));
 
         int expectMatchCount = 5;
@@ -75,7 +75,7 @@ public class WinningLottoTest {
         //given
         List<Integer> winningNumbers = List.of(1,2,3,4,44,45);
         int bonusNumber = 10;
-        WinningLotto winningLotto = new WinningLotto(winningNumbers, bonusNumber);
+        WinningLotto winningLotto = WinningLotto.makeWinningLotto(winningNumbers, bonusNumber);
         Lotto lotto = Lotto.makeLotto(List.of(1, 2, 3, 4, 5, 6));
         int expectMatchCount = 4;
         //when
@@ -90,7 +90,7 @@ public class WinningLottoTest {
         //given
         List<Integer> winningNumbers = List.of(1,2,3,43,44,45);
         int bonusNumber = 10;
-        WinningLotto winningLotto = new WinningLotto(winningNumbers, bonusNumber);
+        WinningLotto winningLotto = WinningLotto.makeWinningLotto(winningNumbers, bonusNumber);
         Lotto lotto = Lotto.makeLotto(List.of(1, 2, 3, 4, 5, 6));
         int expectMatchCount = 3;
         //when
@@ -105,7 +105,7 @@ public class WinningLottoTest {
         //given
         List<Integer> winningNumbers = List.of(1,2,42,43,44,45);
         int bonusNumber = 10;
-        WinningLotto winningLotto = new WinningLotto(winningNumbers, bonusNumber);
+        WinningLotto winningLotto = WinningLotto.makeWinningLotto(winningNumbers, bonusNumber);
         Lotto lotto = Lotto.makeLotto(List.of(1, 2, 3, 4, 5, 6));
         int expectMatchCount = 2;
         //when
@@ -120,7 +120,7 @@ public class WinningLottoTest {
         //given
         List<Integer> winningNumbers = List.of(1,41,42,43,44,45);
         int bonusNumber = 10;
-        WinningLotto winningLotto = new WinningLotto(winningNumbers, bonusNumber);
+        WinningLotto winningLotto = WinningLotto.makeWinningLotto(winningNumbers, bonusNumber);
         Lotto lotto = Lotto.makeLotto(List.of(1, 2, 3, 4, 5, 6));
         int expectMatchCount = 1;
         //when
@@ -135,7 +135,7 @@ public class WinningLottoTest {
         //given
         List<Integer> winningNumbers = List.of(40,41,42,43,44,45);
         int bonusNumber = 10;
-        WinningLotto winningLotto = new WinningLotto(winningNumbers, bonusNumber);
+        WinningLotto winningLotto = WinningLotto.makeWinningLotto(winningNumbers, bonusNumber);
         Lotto lotto = Lotto.makeLotto(List.of(1, 2, 3, 4, 5, 6));
         int expectMatchCount = 0;
         //when
@@ -153,7 +153,7 @@ public class WinningLottoTest {
         int bonusNumber = 1;
 
         // then
-        assertThatThrownBy(() -> new WinningLotto(winningNumbers, bonusNumber))
+        assertThatThrownBy(() -> WinningLotto.makeWinningLotto(winningNumbers, bonusNumber))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

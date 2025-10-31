@@ -16,10 +16,6 @@ public class Lotto {
         this.numbers = numbers;
     }
 
-    public List<Integer> getNumbers() {
-        return numbers;
-    }
-
     public static Lotto createRandomLotto() {
         List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
         return new Lotto(lottoNumbers.stream().sorted().toList());
@@ -27,5 +23,9 @@ public class Lotto {
 
     public static Lotto makeLotto(List<Integer> numbers) {
         return new Lotto(numbers);
+    }
+
+    public List<Integer> getNumbers() {
+        return numbers;
     }
 }

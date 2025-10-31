@@ -5,12 +5,12 @@ import lotto.model.Lotto;
 import lotto.model.Lottos;
 import lotto.model.WinningLotto;
 
-public class LottoResultService {
+public class LottoMainService {
     private final Lottos lottos;
     private final WinningLotto winningLotto;
     private final LottoResultCalculator lottoResultCalculator = new LottoResultCalculator();
 
-    public LottoResultService(Lottos lottos, WinningLotto winningLotto) {
+    public LottoMainService(Lottos lottos, WinningLotto winningLotto) {
         this.lottos = lottos;
         this.winningLotto = winningLotto;
     }
@@ -21,6 +21,11 @@ public class LottoResultService {
                 .map(lottoResultCalculator::calculateResultAmount)
                 .mapToLong(Long::longValue)
                 .sum();
+    }
+
+    public static Lottos purchaseLottos(long inputPurchaseAmount) {
+        long lottoCount = inputPurchaseAmount / 1_000;
+        return Lottos.createRandomLottos(lottoCount);
     }
 
     private LottoResultDto createLottoResultDto(Lotto lotto) {

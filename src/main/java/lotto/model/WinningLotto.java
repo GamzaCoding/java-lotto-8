@@ -13,7 +13,7 @@ public class WinningLotto {
     private final List<Integer> winningNumbers;
     private final int bonusNumber;
 
-    public WinningLotto(List<Integer> winningNumbers, int bonusNumber) {
+    private WinningLotto(List<Integer> winningNumbers, int bonusNumber) {
         validateBonusNumberNotInWinningNumbers(winningNumbers, bonusNumber);
         validateLottoNumberRange(winningNumbers);
 
@@ -23,12 +23,14 @@ public class WinningLotto {
 
     public static WinningLotto of(String winningNumbers, int bonusNumber) {
         List<String> winningNumberListString = Arrays.asList(winningNumbers.split(","));
-
-
         List<Integer> winningNumberListInteger = winningNumberListString.stream()
                 .map(String::strip)
                 .map(Integer::parseInt).toList();
         return new WinningLotto(winningNumberListInteger, bonusNumber);
+    }
+
+    public static WinningLotto makeWinningLotto(List<Integer> winningNumbers, int bonusNumber) {
+        return new WinningLotto(winningNumbers, bonusNumber);
     }
 
     public int calculateMatchCount(Lotto lotto) {
