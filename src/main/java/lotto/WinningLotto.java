@@ -35,4 +35,10 @@ public class WinningLotto {
             throw new IllegalArgumentException("[ERROR] 보너스 번호와 당첨 로또 번호는 겹치면 안됩니다.");
         }
     }
+
+    public Rank calculateRank(Lotto lotto) {
+        int matchCount = calculateMatchCount(lotto);
+        boolean matchBonus = checkBonus(lotto);
+        return Rank.findByCount(matchCount,matchBonus);
+    }
 }

@@ -15,7 +15,7 @@ public class RankTest {
 
         Rank expectRank = Rank.FIRST;
         //when
-        Rank actualRank = winningLotto.calulateRank(lotto);
+        Rank actualRank = winningLotto.calculateRank(lotto);
 
         //then
         Assertions.assertThat(expectRank).isEqualTo(actualRank);
