@@ -1,6 +1,9 @@
-package lotto;
+package lotto.service;
 
 import lotto.dto.LottoResultDto;
+import lotto.model.Lotto;
+import lotto.model.Lottos;
+import lotto.model.WinningLotto;
 
 public class LottoResultService {
     private final Lottos lottos;

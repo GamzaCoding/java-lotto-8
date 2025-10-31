@@ -1,7 +1,7 @@
 package lotto.dto;
 
 import java.util.Map;
-import lotto.Rank;
+import lotto.model.Rank;
 
 public class WinningStatisticsDto {
     private final Map<Rank, Integer> rankAndCount;

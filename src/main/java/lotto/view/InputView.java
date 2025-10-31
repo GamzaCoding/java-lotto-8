@@ -1,6 +1,6 @@
-package lotto;
+package lotto.view;
 
-import static lotto.Validation.*;
+import static lotto.validation.Validation.*;
 
 import camp.nextstep.edu.missionutils.Console;
 

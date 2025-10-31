@@ -1,6 +1,14 @@
-package lotto;
+package lotto.controller;
 
 import java.util.Map;
+import lotto.view.InputView;
+import lotto.service.LottoResultService;
+import lotto.service.LottoTotalService;
+import lotto.model.Lottos;
+import lotto.view.OutputView;
+import lotto.model.Rank;
+import lotto.service.RateOfReturnService;
+import lotto.model.WinningLotto;
 import lotto.dto.PurchasedLottosDto;
 import lotto.dto.WinningStatisticsDto;
 
@@ -53,7 +61,6 @@ public class Controller {
     private void result(WinningStatisticsDto winningStatisticsDto) {
         outputView.printWinningStatistics(winningStatisticsDto);
     }
-
 
     private class StartDto {
         private final long inputMoney;

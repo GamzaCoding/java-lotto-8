@@ -1,5 +1,6 @@
 package lotto;
 
+import lotto.service.RateOfReturnService;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
