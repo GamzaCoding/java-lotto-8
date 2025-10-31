@@ -30,6 +30,10 @@ public enum Rank {
             return Rank.SECOND;
         }
 
+        if (count == 5 && !bonusMatch) {
+            return Rank.THIRD;
+        }
+
         for(Rank rank : values()) {
             if(rank.count == count) {
                 return rank;
