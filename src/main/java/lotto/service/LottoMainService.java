@@ -3,6 +3,7 @@ package lotto.service;
 import lotto.dto.LottoResultDto;
 import lotto.model.Lotto;
 import lotto.model.Lottos;
+import lotto.model.Rank;
 import lotto.model.WinningLotto;
 import lotto.util.RateOfReturnCalculator;
 
@@ -28,8 +29,8 @@ public class LottoMainService {
        return RateOfReturnCalculator.calculateRateOfReturn(inputLottoPurchaseMoney, totalLottoWinningAmount);
     }
 
-
     private LottoResultDto createLottoResultDto(Lotto lotto) {
-        return new LottoResultDto(winningLotto.calculateMatchCount(lotto), winningLotto.checkBonus(lotto));
+        Rank rank = winningLotto.calculateRank(lotto);
+        return new LottoResultDto(rank.getCount(), rank.getMatchBonus());
     }
 }

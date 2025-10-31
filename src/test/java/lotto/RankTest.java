@@ -91,7 +91,7 @@ public class RankTest {
         Lotto lotto = Lotto.makeLotto(List.of(1, 2, 11, 12, 13, 14));
         WinningLotto winningLotto = WinningLotto.makeWinningLotto(List.of(1, 2, 3, 4, 5, 6), 10);
 
-        Rank expectRank = Rank.ZER0;
+        Rank expectRank = Rank.NOTHING;
         //when
         Rank actualRank = winningLotto.calculateRank(lotto);
 
@@ -106,7 +106,7 @@ public class RankTest {
         Lotto lotto = Lotto.makeLotto(List.of(1, 11, 12, 13, 14, 15));
         WinningLotto winningLotto = WinningLotto.makeWinningLotto(List.of(1, 2, 3, 4, 5, 6), 10);
 
-        Rank expectRank = Rank.ZER0;
+        Rank expectRank = Rank.NOTHING;
         //when
         Rank actualRank = winningLotto.calculateRank(lotto);
 
@@ -121,7 +121,7 @@ public class RankTest {
         Lotto lotto = Lotto.makeLotto(List.of(10, 11, 12, 13, 14, 15));
         WinningLotto winningLotto = WinningLotto.makeWinningLotto(List.of(1, 2, 3, 4, 5, 6), 10);
 
-        Rank expectRank = Rank.ZER0;
+        Rank expectRank = Rank.NOTHING;
         //when
         Rank actualRank = winningLotto.calculateRank(lotto);
 

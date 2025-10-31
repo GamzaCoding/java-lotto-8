@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.*;
 
 import java.util.List;
 import lotto.model.Lotto;
+import lotto.model.Rank;
 import lotto.model.WinningLotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -20,9 +21,10 @@ public class WinningLottoTest {
         Lotto lotto = Lotto.makeLotto(List.of(1, 2, 3, 4, 5, 6));
         int expectMatchCount = 6;
         //when
-        int matchCount = winningLotto.calculateMatchCount(lotto);
+        Rank rank = winningLotto.calculateRank(lotto);
+        int matchCount = rank.getCount();
         //then
-        assertThat(matchCount).isEqualTo(expectMatchCount);
+        assertThat(expectMatchCount).isEqualTo(matchCount);
     }
 
     @Test
@@ -39,12 +41,13 @@ public class WinningLottoTest {
         boolean expectBonusCorrect = true;
 
         //when
-        int matchCount = winningLotto.calculateMatchCount(lotto);
-        boolean bonusCorrect = winningLotto.checkBonus(lotto);
+        Rank rank = winningLotto.calculateRank(lotto);
+        int matchCount = rank.getCount();
+        boolean matchBonus = rank.getMatchBonus();
 
         //then
         assertThat(expectMatchCount).isEqualTo(matchCount);
-        assertThat(expectBonusCorrect).isEqualTo(bonusCorrect);
+        assertThat(expectBonusCorrect).isEqualTo(matchBonus);
     }
 
     @Test
@@ -61,12 +64,13 @@ public class WinningLottoTest {
         boolean expectBonusCorrect = false;
 
         //when
-        int matchCount = winningLotto.calculateMatchCount(lotto);
-        boolean bonusCorrect = winningLotto.checkBonus(lotto);
+        Rank rank = winningLotto.calculateRank(lotto);
+        int matchCount = rank.getCount();
+        boolean matchBonus = rank.getMatchBonus();
 
         //then
         assertThat(expectMatchCount).isEqualTo(matchCount);
-        assertThat(expectBonusCorrect).isEqualTo(bonusCorrect);
+        assertThat(expectBonusCorrect).isEqualTo(matchBonus);
     }
 
     @Test
@@ -79,9 +83,10 @@ public class WinningLottoTest {
         Lotto lotto = Lotto.makeLotto(List.of(1, 2, 3, 4, 5, 6));
         int expectMatchCount = 4;
         //when
-        int matchCount = winningLotto.calculateMatchCount(lotto);
+        Rank rank = winningLotto.calculateRank(lotto);
+        int matchCount = rank.getCount();
         //then
-        assertThat(matchCount).isEqualTo(expectMatchCount);
+        assertThat(expectMatchCount).isEqualTo(matchCount);
     }
 
     @Test
@@ -94,39 +99,42 @@ public class WinningLottoTest {
         Lotto lotto = Lotto.makeLotto(List.of(1, 2, 3, 4, 5, 6));
         int expectMatchCount = 3;
         //when
-        int matchCount = winningLotto.calculateMatchCount(lotto);
+        Rank rank = winningLotto.calculateRank(lotto);
+        int matchCount = rank.getCount();
         //then
-        assertThat(matchCount).isEqualTo(expectMatchCount);
+        assertThat(expectMatchCount).isEqualTo(matchCount);
     }
 
     @Test
     @DisplayName("로또 번호 2개가 일치한다.")
-    void 로또_번호_2개가_일치한다() {
+    void 로또_번호_2개가_일치할때_꼴등() {
         //given
         List<Integer> winningNumbers = List.of(1,2,42,43,44,45);
         int bonusNumber = 10;
         WinningLotto winningLotto = WinningLotto.makeWinningLotto(winningNumbers, bonusNumber);
         Lotto lotto = Lotto.makeLotto(List.of(1, 2, 3, 4, 5, 6));
-        int expectMatchCount = 2;
+        int expectMatchCount = 0;
         //when
-        int matchCount = winningLotto.calculateMatchCount(lotto);
+        Rank rank = winningLotto.calculateRank(lotto);
+        int matchCount = rank.getCount();
         //then
-        assertThat(matchCount).isEqualTo(expectMatchCount);
+        assertThat(expectMatchCount).isEqualTo(matchCount);
     }
 
     @Test
     @DisplayName("로또 번호 1개가 일치한다.")
-    void 로또_번호_1개가_일치한다() {
+    void 로또_번호_1개가_일치할때_꼴등() {
         //given
         List<Integer> winningNumbers = List.of(1,41,42,43,44,45);
         int bonusNumber = 10;
         WinningLotto winningLotto = WinningLotto.makeWinningLotto(winningNumbers, bonusNumber);
         Lotto lotto = Lotto.makeLotto(List.of(1, 2, 3, 4, 5, 6));
-        int expectMatchCount = 1;
+        int expectMatchCount = 0;
         //when
-        int matchCount = winningLotto.calculateMatchCount(lotto);
+        Rank rank = winningLotto.calculateRank(lotto);
+        int matchCount = rank.getCount();
         //then
-        assertThat(matchCount).isEqualTo(expectMatchCount);
+        assertThat(expectMatchCount).isEqualTo(matchCount);
     }
 
     @Test
@@ -139,9 +147,10 @@ public class WinningLottoTest {
         Lotto lotto = Lotto.makeLotto(List.of(1, 2, 3, 4, 5, 6));
         int expectMatchCount = 0;
         //when
-        int matchCount = winningLotto.calculateMatchCount(lotto);
+        Rank rank = winningLotto.calculateRank(lotto);
+        int matchCount = rank.getCount();
         //then
-        assertThat(matchCount).isEqualTo(expectMatchCount);
+        assertThat(expectMatchCount).isEqualTo(matchCount);
     }
 
     @Test

@@ -33,20 +33,20 @@ public class WinningLotto {
         return new WinningLotto(winningNumbers, bonusNumber);
     }
 
-    public int calculateMatchCount(Lotto lotto) {
+    public Rank calculateRank(Lotto lotto) {
+        int matchCount = calculateMatchCount(lotto);
+        boolean matchBonus = checkBonus(lotto);
+        return Rank.findByCount(matchCount,matchBonus);
+    }
+
+    private int calculateMatchCount(Lotto lotto) {
         return (int) lotto.getNumbers().stream()
                 .filter(winningNumbers::contains)
                 .count();
     }
 
-    public boolean checkBonus(Lotto lotto) {
+    private boolean checkBonus(Lotto lotto) {
         return lotto.getNumbers().contains(bonusNumber);
-    }
-
-    public Rank calculateRank(Lotto lotto) {
-        int matchCount = calculateMatchCount(lotto);
-        boolean matchBonus = checkBonus(lotto);
-        return Rank.findByCount(matchCount,matchBonus);
     }
 
     public Map<Rank, Integer> giveRankAndCount(Lottos lottos) {
@@ -61,7 +61,7 @@ public class WinningLotto {
         lottos.getLottos().stream()
                 .forEach(lotto -> rankAndCount.merge(calculateRank(lotto),1, Integer::sum));
 
-        rankAndCount.remove(Rank.ZER0);
+        rankAndCount.remove(Rank.NOTHING);
 
         return rankAndCount;
     }
