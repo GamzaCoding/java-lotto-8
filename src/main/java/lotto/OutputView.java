@@ -11,8 +11,8 @@ public class OutputView {
     }
 
     public void printPurchasedLotto(PurchasedLottosDto lottosDto) {
-        lottosDto.getLottos().stream
-        .forEach(this::print);
+        lottosDto.getLottos()
+                .forEach(lotto -> print(lotto.getNumbers().toString()));
     }
 
     public void printWinningNumberMessage() {
@@ -23,16 +23,20 @@ public class OutputView {
         print("보너스 번호를 입력해 주세요.");
     }
 
-    public void printWinningStatistics(WinningSattisticeDto winningSattisticeDto) {
+    public void printWinningStatistics(WinningStatisticsDto winningSattisticeDto) {
         print("당첨 통계");
         print("---");
 
-        winningSattisticeDto.getRankCounts().stream
-                        .forEach((rank, count)-> { // rank개 enum 값이 여서 등수에 따라 금액이 얼마인지도 정보가 있어야 할듯
-                            System.out.println(rank + "개 일치 (" + rank.prizeMoney + "원) - " + count + "개");
-                        });
+        winningSattisticeDto.getRankAndCount()
+                .forEach((rank, count)-> {
+                    if (rank.getCount() == 5 && rank.prizeMoney() == 30_000_000) {
+                        System.out.println(rank + "개 일치, 보너스 볼 일치 (" + rank.prizeMoney() + "원) - " + count + "개");
+                    } else {
+                        System.out.println(rank + "개 일치 (" + rank.prizeMoney() + "원) - " + count + "개");
+                    }
+                });
 
-        System.out.println("총 수익률은 " + winningSattisticeDto.rateOfReturn + "%입니다.");
+        System.out.println("총 수익률은 " + winningSattisticeDto.getRateOfReturn() + "%입니다.");
     }
 
     private void print(String message) {
