@@ -15,11 +15,11 @@ public class LottoResultServiceTest {
     void 총_당첨_금액을_알려준다() {
         //given
         WinningLotto winningLotto = new WinningLotto(List.of(10, 20, 30, 40, 44, 45), 1);
-        Lotto firstPriceLotto = new Lotto(List.of(10, 20, 30, 40, 44, 45));
-        Lotto secondPriceLotto = new Lotto(List.of(10, 20, 30, 40, 44, 1));
-        Lotto thirdPriceLotto = new Lotto(List.of(10, 20, 30, 40, 44, 2));
+        Lotto firstPriceLotto = Lotto.makeLotto(List.of(10, 20, 30, 40, 44, 45));
+        Lotto secondPriceLotto = Lotto.makeLotto(List.of(10, 20, 30, 40, 44, 1));
+        Lotto thirdPriceLotto = Lotto.makeLotto(List.of(10, 20, 30, 40, 44, 2));
 
-        Lottos lottos = new Lottos(List.of(firstPriceLotto, secondPriceLotto, thirdPriceLotto));
+        Lottos lottos = Lottos.makeLottos(List.of(firstPriceLotto, secondPriceLotto, thirdPriceLotto));
         LottoResultService lottoResultService = new LottoResultService(lottos, winningLotto);
 
         long expectTotalLottoWinningAmount = 2_031_500_000;
@@ -36,11 +36,11 @@ public class LottoResultServiceTest {
     void 총_수익률을_알려준다() {
         //given
         WinningLotto winningLotto = new WinningLotto(List.of(10, 20, 30, 40, 44, 45), 1);
-        Lotto firstPriceLotto = new Lotto(List.of(10, 20, 30, 40, 44, 45));
-        Lotto secondPriceLotto = new Lotto(List.of(10, 20, 30, 40, 44, 1));
-        Lotto thirdPriceLotto = new Lotto(List.of(10, 20, 30, 40, 44, 2));
+        Lotto firstPriceLotto = Lotto.makeLotto(List.of(10, 20, 30, 40, 44, 45));
+        Lotto secondPriceLotto = Lotto.makeLotto(List.of(10, 20, 30, 40, 44, 1));
+        Lotto thirdPriceLotto = Lotto.makeLotto(List.of(10, 20, 30, 40, 44, 2));
 
-        Lottos lottos = new Lottos(List.of(firstPriceLotto, secondPriceLotto, thirdPriceLotto));
+        Lottos lottos = Lottos.makeLottos(List.of(firstPriceLotto, secondPriceLotto, thirdPriceLotto));
         LottoResultService lottoResultService = new LottoResultService(lottos, winningLotto);
 
         long expectTotalLottoWinningAmount = 2_031_500_000;

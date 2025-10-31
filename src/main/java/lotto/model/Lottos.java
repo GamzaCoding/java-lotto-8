@@ -1,26 +1,29 @@
 package lotto.model;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.LongStream;
 
 public class Lottos {
-    private List<Lotto> lottos;
+    private final List<Lotto> lottos;
 
-    public Lottos(List<Lotto> lottos) {
+    private Lottos(List<Lotto> lottos) {
         this.lottos = lottos;
     }
 
     public List<Lotto> getLottos() {
-        return lottos;
+        return List.copyOf(lottos); // 얕은 복사 같은데.. 흠...
     }
 
-    public static Lottos createLottos(long count) {
-        List<Lotto> lottos = new ArrayList<>();
+    public static Lottos createRandomLottos(long count) {
+        List<Lotto> lottosByRandom = LongStream
+                .range(0, count)
+                .mapToObj(i -> Lotto.createRandomLotto())
+                .toList();
 
-        for(int i = 0; i < count; i++) {
-            lottos.add(Lotto.createRandomLotto());
-        }
+        return new Lottos(lottosByRandom);
+    }
 
+    public static Lottos makeLottos(List<Lotto> lottos) {
         return new Lottos(lottos);
     }
 }

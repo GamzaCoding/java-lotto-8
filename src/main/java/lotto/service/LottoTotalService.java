@@ -12,7 +12,7 @@ public class LottoTotalService {
     private static Lottos createLottos(long inputPurchaseAmount) {
         long lottoCount = inputPurchaseAmount / 1_000;
 
-        return Lottos.createLottos(lottoCount);
+        return Lottos.createRandomLottos(lottoCount);
     }
 
     public Lottos getLottos() {

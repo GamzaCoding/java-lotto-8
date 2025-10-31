@@ -8,7 +8,7 @@ import java.util.List;
 public class Lotto {
     private final List<Integer> numbers;
 
-    public Lotto(List<Integer> numbers) {
+    private Lotto(List<Integer> numbers) {
         validateLottoNumberCount(numbers);
         validateLottoNumberRange(numbers);
         validateDuplicateNumber(numbers);
@@ -23,5 +23,9 @@ public class Lotto {
     public static Lotto createRandomLotto() {
         List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
         return new Lotto(lottoNumbers.stream().sorted().toList());
+    }
+
+    public static Lotto makeLotto(List<Integer> numbers) {
+        return new Lotto(numbers);
     }
 }
