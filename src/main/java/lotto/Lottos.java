@@ -1,5 +1,6 @@
 package lotto;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Lottos {
@@ -11,5 +12,15 @@ public class Lottos {
 
     public List<Lotto> getLottos() {
         return lottos;
+    }
+
+    public static Lottos createLottos(long count) {
+        List<Lotto> lottos = new ArrayList<>();
+
+        for(int i = 0; i < count; i++) {
+            lottos.add(Lotto.of());
+        }
+
+        return new Lottos(lottos);
     }
 }

@@ -1,5 +1,6 @@
 package lotto;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class WinningLotto {
@@ -11,6 +12,12 @@ public class WinningLotto {
         validateBonusNumberNotInWinningNumbers(winningNumbers, bonusNumber);
         this.winningNumbers = winningNumbers;
         this.bonusNumber = bonusNumber;
+    }
+
+    public static WinningLotto of(String winningNumbers, int bonusNumber) {
+        List<String> winningNumberListString = Arrays.asList(winningNumbers.split(","));
+        List<Integer> winningNumberListInteger = winningNumberListString.stream().map(Integer::parseInt).toList();
+        return new WinningLotto(winningNumberListInteger, bonusNumber);
     }
 
     public int calculateMatchCount(Lotto lotto) {

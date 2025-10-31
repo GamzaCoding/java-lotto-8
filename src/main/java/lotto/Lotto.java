@@ -1,5 +1,6 @@
 package lotto;
 
+import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
 import java.util.Set;
 
@@ -17,6 +18,11 @@ public class Lotto {
         return numbers;
     }
 
+    public static Lotto of() {
+        List<Integer> lottoNum = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        return new Lotto(lottoNum);
+    }
+
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
@@ -31,7 +37,7 @@ public class Lotto {
 
     private void validateLottoNumberRange(List<Integer> numbers) {
         if (!isCorrectRange(numbers)) {
-            throw  new IllegalArgumentException("[ERROR] 로또 번호는 1~45 사이어야 합니다.");
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 1~45 사이어야 합니다.");
         }
     }
 

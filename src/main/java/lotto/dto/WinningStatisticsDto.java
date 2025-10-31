@@ -1,6 +1,7 @@
-package lotto;
+package lotto.dto;
 
 import java.util.Map;
+import lotto.Rank;
 
 public class WinningStatisticsDto {
     private final Map<Rank, Integer> rankAndCount;

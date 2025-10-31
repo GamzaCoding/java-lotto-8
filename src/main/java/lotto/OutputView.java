@@ -1,5 +1,8 @@
 package lotto;
 
+import lotto.dto.PurchasedLottosDto;
+import lotto.dto.WinningStatisticsDto;
+
 public class OutputView {
 
     public void printPurchaseAmountMessage() {

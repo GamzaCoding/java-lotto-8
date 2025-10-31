@@ -1,6 +1,8 @@
-package lotto;
+package lotto.dto;
 
 import java.util.List;
+import lotto.Lotto;
+import lotto.Lottos;
 
 public class PurchasedLottosDto {
     private final Lottos lottos;

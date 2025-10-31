@@ -1,5 +1,7 @@
 package lotto;
 
+import lotto.dto.LottoResultDto;
+
 public class LottoResultCalculator {
 
     public long calculateResultAmount(LottoResultDto lottoResultDto) {

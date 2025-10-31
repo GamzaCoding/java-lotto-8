@@ -1,5 +1,7 @@
 package lotto;
 
+import lotto.dto.LottoResultDto;
+
 public class LottoResultService {
     private final Lottos lottos;
     private final WinningLotto winningLotto;

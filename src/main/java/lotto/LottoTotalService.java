@@ -1,0 +1,19 @@
+package lotto;
+
+public class LottoTotalService {
+    private final Lottos lottos;
+
+    public LottoTotalService(long inputPurchaseAmount) {
+        this.lottos = createLottos(inputPurchaseAmount);
+    }
+
+    private static Lottos createLottos(long inputPurchaseAmount) {
+        long lottoCount = inputPurchaseAmount / 1_000;
+
+        return Lottos.createLottos(lottoCount);
+    }
+
+    public Lottos getLottos() {
+        return lottos;
+    }
+}
