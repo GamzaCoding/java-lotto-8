@@ -6,7 +6,7 @@ import lotto.dto.WinningStatisticsDto;
 
 public class OutputView {
 
-    private DecimalFormat decimalFormat = new DecimalFormat("#,###");
+    private final DecimalFormat decimalFormat = new DecimalFormat("#,###");
 
     public void printPurchaseAmountMessage() {
         print("구입금액을 입력해 주세요.");
@@ -51,9 +51,5 @@ public class OutputView {
 
     public DecimalFormat getDecimalFormat() {
         return decimalFormat;
-    }
-
-    public void setDecimalFormat(DecimalFormat decimalFormat) {
-        this.decimalFormat = decimalFormat;
     }
 }

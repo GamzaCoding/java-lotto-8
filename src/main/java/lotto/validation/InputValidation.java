@@ -1,6 +1,6 @@
 package lotto.validation;
 
-public class Validation {
+public class InputValidation {
 
     public static void validateNumberValue(String inputLottoPurchaseMoney) {
         if (!inputLottoPurchaseMoney.matches("\\d+")) {
@@ -23,6 +23,12 @@ public class Validation {
     public static void validateZeroNumber(String inputLottoPurchaseMoney) {
         if (Integer.parseInt(inputLottoPurchaseMoney) == 0) {
             throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 0원을 입력할 수 없습니다.");
+        }
+    }
+
+    public static void validateWinningNumberFormat(String inputWinningNumber) {
+        if (inputWinningNumber.matches("^\\d+(\\s*,\\s*\\d+){5}$")) {
+            throw new IllegalArgumentException("[ERROR] 당첨 번호로 입력 양식이 틀렸습니다.");
         }
     }
 }

@@ -1,5 +1,8 @@
 package lotto.model;
 
+import static lotto.validation.ModelValidation.validateBonusNumberNotInWinningNumbers;
+import static lotto.validation.ModelValidation.validateLottoNumberRange;
+
 import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -12,6 +15,8 @@ public class WinningLotto {
 
     public WinningLotto(List<Integer> winningNumbers, int bonusNumber) {
         validateBonusNumberNotInWinningNumbers(winningNumbers, bonusNumber);
+        validateLottoNumberRange(winningNumbers);
+
         this.winningNumbers = winningNumbers;
         this.bonusNumber = bonusNumber;
     }
@@ -34,12 +39,6 @@ public class WinningLotto {
 
     public boolean checkBonus(Lotto lotto) {
         return lotto.getNumbers().contains(bonusNumber);
-    }
-
-    private void validateBonusNumberNotInWinningNumbers(List<Integer> winningNumbers, int bonusNumber) {
-        if (winningNumbers.contains(bonusNumber)) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호와 당첨 로또 번호는 겹치면 안됩니다.");
-        }
     }
 
     public Rank calculateRank(Lotto lotto) {

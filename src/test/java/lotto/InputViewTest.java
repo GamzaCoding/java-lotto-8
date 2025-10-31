@@ -2,7 +2,7 @@ package lotto;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import lotto.validation.Validation;
+import lotto.validation.InputValidation;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -14,7 +14,7 @@ public class InputViewTest {
         //given
         String inputLottoPurchaseMoney = "abcde";
         //then
-        assertThatThrownBy(() -> Validation.validateNumberValue(inputLottoPurchaseMoney))
+        assertThatThrownBy(() -> InputValidation.validateNumberValue(inputLottoPurchaseMoney))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -24,7 +24,7 @@ public class InputViewTest {
         //given
         String inputLottoPurchaseMoney = "-1000";
         //then
-        assertThatThrownBy(() -> Validation.validateNegative(inputLottoPurchaseMoney))
+        assertThatThrownBy(() -> InputValidation.validateNegative(inputLottoPurchaseMoney))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -34,7 +34,7 @@ public class InputViewTest {
         //given
         String inputLottoPurchaseMoney = "0";
         //then
-        assertThatThrownBy(() -> Validation.validateZeroNumber(inputLottoPurchaseMoney))
+        assertThatThrownBy(() -> InputValidation.validateZeroNumber(inputLottoPurchaseMoney))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -44,7 +44,7 @@ public class InputViewTest {
         //given
         String inputLottoPurchaseMoney = "1001";
         //then
-        assertThatThrownBy(() -> Validation.validateDivisibleByThousand(inputLottoPurchaseMoney))
+        assertThatThrownBy(() -> InputValidation.validateDivisibleByThousand(inputLottoPurchaseMoney))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }
