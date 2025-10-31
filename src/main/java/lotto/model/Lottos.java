@@ -18,7 +18,7 @@ public class Lottos {
         List<Lotto> lottos = new ArrayList<>();
 
         for(int i = 0; i < count; i++) {
-            lottos.add(Lotto.of());
+            lottos.add(Lotto.createRandomLotto());
         }
 
         return new Lottos(lottos);

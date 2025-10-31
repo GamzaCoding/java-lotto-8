@@ -13,15 +13,15 @@ public class Lotto {
         validateLottoNumberRange(numbers);
         validateDuplicateNumber(numbers);
 
-        this.numbers = numbers.stream().sorted().toList();
+        this.numbers = numbers;
     }
 
     public List<Integer> getNumbers() {
         return numbers;
     }
 
-    public static Lotto of() {
-        List<Integer> lottoNum = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-        return new Lotto(lottoNum);
+    public static Lotto createRandomLotto() {
+        List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        return new Lotto(lottoNumbers.stream().sorted().toList());
     }
 }
