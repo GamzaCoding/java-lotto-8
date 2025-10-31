@@ -1,12 +1,12 @@
 package lotto.controller;
 
 import java.util.Map;
+import lotto.service.LottoPurchaseService;
 import lotto.view.InputView;
 import lotto.service.LottoMainService;
 import lotto.model.Lottos;
 import lotto.view.OutputView;
 import lotto.model.Rank;
-import lotto.service.RateOfReturnService;
 import lotto.model.WinningLotto;
 import lotto.dto.PurchasedLottosDto;
 import lotto.dto.WinningStatisticsDto;
@@ -26,7 +26,7 @@ public class Controller {
         String inputPurchaseAmount = inputView.inputPurchaseAmount();
         long inputPurchaseAmountLong = Long.parseLong(inputPurchaseAmount);  // 구매한 금액
 
-        Lottos lottos = LottoMainService.purchaseLottos(inputPurchaseAmountLong); // 입력한 금액에 맞는 갯수의 랜덤한 로또들 생성
+        Lottos lottos = LottoPurchaseService.purchaseLottos(inputPurchaseAmountLong); // 입력한 금액에 맞는 갯수의 랜덤한 로또들 생성
         outputView.printPurchaseCountMessage((int) inputPurchaseAmountLong);
 
         outputView.printPurchasedLotto(new PurchasedLottosDto(lottos));
@@ -49,7 +49,7 @@ public class Controller {
 
         long totalWinningMoney = lottoMainService.calculateTotalWinningAmount(); // 총 당첨금액 합산 금액
 
-        double totalRateOfReturn = RateOfReturnService.calculateRateOfReturn(inputMoney, totalWinningMoney); // 총 수익률%
+        double totalRateOfReturn = lottoMainService.rateOfReturn(inputMoney, totalWinningMoney); // 총 수익률%
         Map<Rank, Integer> rankAndCount = winningLotto.giveRankAndCount(lottos);
 
         return new WinningStatisticsDto(rankAndCount, totalRateOfReturn);

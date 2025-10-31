@@ -4,6 +4,7 @@ import lotto.dto.LottoResultDto;
 import lotto.model.Lotto;
 import lotto.model.Lottos;
 import lotto.model.WinningLotto;
+import lotto.util.RateOfReturnCalculator;
 
 public class LottoMainService {
     private final Lottos lottos;
@@ -23,10 +24,10 @@ public class LottoMainService {
                 .sum();
     }
 
-    public static Lottos purchaseLottos(long inputPurchaseAmount) {
-        long lottoCount = inputPurchaseAmount / 1_000;
-        return Lottos.createRandomLottos(lottoCount);
+    public double rateOfReturn(long inputLottoPurchaseMoney, long totalLottoWinningAmount) {
+       return RateOfReturnCalculator.calculateRateOfReturn(inputLottoPurchaseMoney, totalLottoWinningAmount);
     }
+
 
     private LottoResultDto createLottoResultDto(Lotto lotto) {
         return new LottoResultDto(winningLotto.calculateMatchCount(lotto), winningLotto.checkBonus(lotto));
