@@ -1,9 +1,12 @@
 package lotto;
 
+import java.text.DecimalFormat;
 import lotto.dto.PurchasedLottosDto;
 import lotto.dto.WinningStatisticsDto;
 
 public class OutputView {
+
+    private DecimalFormat decimalFormat = new DecimalFormat("#,###");
 
     public void printPurchaseAmountMessage() {
         print("구입금액을 입력해 주세요.");
@@ -33,9 +36,9 @@ public class OutputView {
         winningSattisticeDto.getRankAndCount()
                 .forEach((rank, count)-> {
                     if (rank.getCount() == 5 && rank.prizeMoney() == 30_000_000) {
-                        System.out.println(rank + "개 일치, 보너스 볼 일치 (" + rank.prizeMoney() + "원) - " + count + "개");
+                        System.out.println(rank.getCount() + "개 일치, 보너스 볼 일치 (" + decimalFormat.format(rank.prizeMoney()) + "원) - " + count + "개");
                     } else {
-                        System.out.println(rank + "개 일치 (" + rank.prizeMoney() + "원) - " + count + "개");
+                        System.out.println(rank.getCount() + "개 일치 (" + decimalFormat.format(rank.prizeMoney()) + "원) - " + count + "개");
                     }
                 });
 
@@ -44,5 +47,13 @@ public class OutputView {
 
     private void print(String message) {
         System.out.println(message);
+    }
+
+    public DecimalFormat getDecimalFormat() {
+        return decimalFormat;
+    }
+
+    public void setDecimalFormat(DecimalFormat decimalFormat) {
+        this.decimalFormat = decimalFormat;
     }
 }

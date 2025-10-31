@@ -1,7 +1,10 @@
 package lotto;
 
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 public class WinningLotto {
 
@@ -16,7 +19,11 @@ public class WinningLotto {
 
     public static WinningLotto of(String winningNumbers, int bonusNumber) {
         List<String> winningNumberListString = Arrays.asList(winningNumbers.split(","));
-        List<Integer> winningNumberListInteger = winningNumberListString.stream().map(Integer::parseInt).toList();
+
+
+        List<Integer> winningNumberListInteger = winningNumberListString.stream()
+                .map(String::strip)
+                .map(Integer::parseInt).toList();
         return new WinningLotto(winningNumberListInteger, bonusNumber);
     }
 
@@ -40,5 +47,22 @@ public class WinningLotto {
         int matchCount = calculateMatchCount(lotto);
         boolean matchBonus = checkBonus(lotto);
         return Rank.findByCount(matchCount,matchBonus);
+    }
+
+    public Map<Rank, Integer> giveRankAndCount(Lottos lottos) {
+        Map <Rank, Integer> rankAndCount = new LinkedHashMap<>();
+
+        rankAndCount.put(Rank.FIFTH, 0);
+        rankAndCount.put(Rank.FOURTH, 0);
+        rankAndCount.put(Rank.THIRD, 0);
+        rankAndCount.put(Rank.SECOND, 0);
+        rankAndCount.put(Rank.FIRST, 0);
+
+        lottos.getLottos().stream()
+                .forEach(lotto -> rankAndCount.merge(calculateRank(lotto),1, Integer::sum));
+
+        rankAndCount.remove(Rank.ZER0);
+
+        return rankAndCount;
     }
 }

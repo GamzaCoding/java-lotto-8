@@ -1,11 +1,18 @@
 package lotto;
 
+import static lotto.Validation.*;
+
 import camp.nextstep.edu.missionutils.Console;
 
 public class InputView {
 
     public String inputPurchaseAmount() {
-        return Console.readLine();
+        String input = Console.readLine();
+        validateNumberValue(input);
+        validateNegative(input);
+        validateDivisibleByThousand(input);
+        validateZeroNumber(input);
+        return input;
     }
 
     public String inputWinningNumber() {

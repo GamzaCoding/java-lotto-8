@@ -1,5 +1,6 @@
 package lotto;
 
+import java.util.Map;
 import lotto.dto.PurchasedLottosDto;
 import lotto.dto.WinningStatisticsDto;
 
@@ -9,7 +10,8 @@ public class Controller {
 
     public void run() {
         StartDto startDto = start();
-        processLotto(startDto);
+        WinningStatisticsDto winningStatisticsDto = processLotto(startDto);
+        result(winningStatisticsDto);
     }
 
     private StartDto start() {
@@ -17,13 +19,15 @@ public class Controller {
         String inputPurchaseAmount = inputView.inputPurchaseAmount();
         long inputPurchaseAmountLong = Long.parseLong(inputPurchaseAmount);  // 구매한 금액
         LottoTotalService lottoTotalService = new LottoTotalService(inputPurchaseAmountLong);
+
+
         Lottos lottos = lottoTotalService.getLottos(); // 입력한 금액에 맞는 갯수의 랜덤한 로또들 생성
         outputView.printPurchaseCountMessage((int) inputPurchaseAmountLong);
 
         outputView.printPurchasedLotto(new PurchasedLottosDto(lottos));
 
         outputView.printWinningNumberMessage();
-        String inputedWinningNumber = inputView.inputWinningNumber();
+        String inputedWinningNumber = inputView.inputWinningNumber(); // 담첨 로또 번호 입력
         outputView.printBonusNumberMessage();
         String bonusNumberString = inputView.inputBonusNumber();
         WinningLotto winningLotto = WinningLotto.of(inputedWinningNumber, Integer.parseInt(bonusNumberString)); // 당첨 로또 생성
@@ -32,15 +36,18 @@ public class Controller {
     }
 
     private WinningStatisticsDto processLotto(StartDto startDto) {
-        LottoResultService lottoResultService = new LottoResultService(startDto.getLottos(),
-                startDto.getWinningLotto());
+        long inputMoney = startDto.getInputMoney();
+        Lottos lottos = startDto.getLottos();
+        WinningLotto winningLotto = startDto.getWinningLotto();
+
+        LottoResultService lottoResultService = new LottoResultService(lottos, winningLotto);
 
         long totalWinningMoney = lottoResultService.calculateTotalWinningAmount(); // 총 당첨금액 합산 금액
 
-        double totalRateOfReturn = RateOfReturnService.calculateRateOfReturn(startDto.getInputMoney(), totalWinningMoney); // 총 수익률%
+        double totalRateOfReturn = RateOfReturnService.calculateRateOfReturn(inputMoney, totalWinningMoney); // 총 수익률%
+        Map<Rank, Integer> rankAndCount = winningLotto.giveRankAndCount(lottos);
 
-
-        return null; // 이부분 부터 수정
+        return new WinningStatisticsDto(rankAndCount, totalRateOfReturn);
     }
 
     private void result(WinningStatisticsDto winningStatisticsDto) {
