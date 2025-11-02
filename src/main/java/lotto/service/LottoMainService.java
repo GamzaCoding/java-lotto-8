@@ -1,14 +1,16 @@
 package lotto.service;
 
+import java.util.List;
 import lotto.dto.LottoResultDto;
 import lotto.dto.ResponseLottosDto;
+import lotto.dto.WinningLottoDto;
 import lotto.model.Lotto;
 import lotto.model.Lottos;
 import lotto.model.Rank;
 import lotto.util.RateOfReturnCalculator;
 
 public class LottoMainService {
-    private LottoPurchaseService lottoPurchaseService;
+    private final LottoPurchaseService lottoPurchaseService;
     private WinningLottoService winningLottoService;
     private RateOfReturnService rateOfReturnService;
 
@@ -22,6 +24,11 @@ public class LottoMainService {
         Lottos lottos = lottoPurchaseService.buy(purchaseAmount);
         return ResponseLottosDto.of(lottos);
     }
+
+    public WinningLottoDto createWinningLottoDto(List<Integer> winningNumbers, long bonusNumberLong) {
+        return new WinningLottoDto(winningNumbers, bonusNumberLong);
+    }
+
 
     public long calculateTotalWinningAmount() {
         return lottos.getLottos().stream()

@@ -1,15 +1,16 @@
 package lotto.controller;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 import lotto.dto.ResponseLottosDto;
-import lotto.service.LottoPurchaseService;
+import lotto.dto.WinningLottoDto;
 import lotto.view.InputView;
 import lotto.service.LottoMainService;
 import lotto.model.Lottos;
 import lotto.view.OutputView;
 import lotto.model.Rank;
 import lotto.model.WinningLotto;
-import lotto.dto.PurchasedLottosDto;
 import lotto.dto.WinningStatisticsDto;
 
 public class Controller {
@@ -20,6 +21,8 @@ public class Controller {
     public void run() {
 
         buyLottos();
+        WinningLottoDto winningLottoDto = inputWinningLottoInformation();
+
 
         StartDto startDto = start();
         WinningStatisticsDto winningStatisticsDto = processLotto(startDto);
@@ -30,11 +33,31 @@ public class Controller {
     private void buyLottos() {
         outputView.printPurchaseAmountMessage();
         String inputPurchaseAmount = inputView.inputPurchaseAmount();
-        long inputPurchaseAmountLong = Long.parseLong(inputPurchaseAmount);// 구매한 금액
+        long inputPurchaseAmountLong = Long.parseLong(inputPurchaseAmount);// 이 부분 고민해야 한다.
 
         ResponseLottosDto responseLottosDto = lottoMainService.buyLottos(inputPurchaseAmountLong);
+
         outputView.printPurchaseCountMessage(responseLottosDto);
         outputView.printPurchasedLottos(responseLottosDto);
+    }
+
+    private WinningLottoDto inputWinningLottoInformation() {
+        outputView.printWinningNumberMessage();
+        String winningNumber = inputView.inputWinningNumber();
+        List<Integer> winningNumbers = Arrays.stream(winningNumber.split(","))
+                .map(String::strip)
+                .map(Integer::parseInt)
+                .toList();
+
+        outputView.printBonusNumberMessage();
+        String bonusNumberString = inputView.inputBonusNumber();
+        long bonusNumberLong = Long.parseLong(bonusNumberString); // 이 부분 고민해야 한다.
+
+        return lottoMainService.createWinningLottoDto(winningNumbers, bonusNumberLong);
+    }
+
+    private void showWinningResult(WinningLottoDto winningLottoDto) {
+        outputView.
     }
 
     private StartDto start() {
