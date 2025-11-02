@@ -3,10 +3,7 @@ package lotto.model;
 import static lotto.validation.ModelValidation.validateBonusNumberNotInWinningNumbers;
 import static lotto.validation.ModelValidation.validateLottoNumberRange;
 
-import java.util.Arrays;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 
 public class WinningLotto {
 
@@ -21,48 +18,21 @@ public class WinningLotto {
         this.bonusNumber = bonusNumber;
     }
 
-    public static WinningLotto of(String winningNumbers, int bonusNumber) {
-        List<String> winningNumberListString = Arrays.asList(winningNumbers.split(","));
-        List<Integer> winningNumberListInteger = winningNumberListString.stream()
-                .map(String::strip)
-                .map(Integer::parseInt).toList();
-        return new WinningLotto(winningNumberListInteger, bonusNumber);
+    public static WinningLotto of(List<Integer> winningNumbers, int bonusNumber) {
+        return new WinningLotto(winningNumbers, bonusNumber);
     }
 
     public static WinningLotto makeWinningLotto(List<Integer> winningNumbers, int bonusNumber) {
         return new WinningLotto(winningNumbers, bonusNumber);
     }
 
-    public Rank calculateRank(Lotto lotto) {
-        int matchCount = calculateMatchCount(lotto);
-        boolean matchBonus = checkBonus(lotto);
-        return Rank.findByCount(matchCount,matchBonus);
-    }
-
-    private int calculateMatchCount(Lotto lotto) {
+    public int calculateMatchCount(Lotto lotto) {
         return (int) lotto.getNumbers().stream()
                 .filter(winningNumbers::contains)
                 .count();
     }
 
-    private boolean checkBonus(Lotto lotto) {
+    public boolean checkBonus(Lotto lotto) {
         return lotto.getNumbers().contains(bonusNumber);
-    }
-
-    public Map<Rank, Integer> giveRankAndCount(Lottos lottos) {
-        Map <Rank, Integer> rankAndCount = new LinkedHashMap<>();
-
-        rankAndCount.put(Rank.FIFTH, 0);
-        rankAndCount.put(Rank.FOURTH, 0);
-        rankAndCount.put(Rank.THIRD, 0);
-        rankAndCount.put(Rank.SECOND, 0);
-        rankAndCount.put(Rank.FIRST, 0);
-
-        lottos.getLottos().stream()
-                .forEach(lotto -> rankAndCount.merge(calculateRank(lotto),1, Integer::sum));
-
-        rankAndCount.remove(Rank.NOTHING);
-
-        return rankAndCount;
     }
 }

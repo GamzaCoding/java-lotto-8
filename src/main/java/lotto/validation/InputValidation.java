@@ -28,7 +28,8 @@ public class InputValidation {
 
     public static void validateWinningNumberFormat(String inputWinningNumber) {
         if (inputWinningNumber.matches("^\\d+(\\s*,\\s*\\d+){5}$")) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호로 입력 양식이 틀렸습니다.");
+            return;
         }
+        throw new IllegalArgumentException("[ERROR] 당첨 번호로 입력 양식이 틀렸습니다.");
     }
 }

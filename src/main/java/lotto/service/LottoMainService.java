@@ -1,18 +1,19 @@
 package lotto.service;
 
 import java.util.List;
-import lotto.dto.LottoResultDto;
+import java.util.Map;
+import lotto.dto.RateOfReturnDto;
 import lotto.dto.ResponseLottosDto;
 import lotto.dto.WinningLottoDto;
-import lotto.model.Lotto;
+import lotto.dto.WinningStatisticsDto;
 import lotto.model.Lottos;
 import lotto.model.Rank;
-import lotto.util.RateOfReturnCalculator;
+import lotto.model.WinningLotto;
 
 public class LottoMainService {
     private final LottoPurchaseService lottoPurchaseService;
-    private WinningLottoService winningLottoService;
-    private RateOfReturnService rateOfReturnService;
+    private final WinningLottoService winningLottoService;
+    private final RateOfReturnService rateOfReturnService;
 
     public LottoMainService() {
         this.lottoPurchaseService = new LottoPurchaseService();
@@ -25,25 +26,23 @@ public class LottoMainService {
         return ResponseLottosDto.of(lottos);
     }
 
-    public WinningLottoDto createWinningLottoDto(List<Integer> winningNumbers, long bonusNumberLong) {
+    public WinningLottoDto createWinningLottoDto(List<Integer> winningNumbers, int bonusNumberLong) {
         return new WinningLottoDto(winningNumbers, bonusNumberLong);
     }
 
+    public WinningStatisticsDto showWinningStatistics(WinningLottoDto winningLottoDto,
+                                                      ResponseLottosDto responseLottosDto) {
+        WinningLotto winningLotto = winningLottoService.change(winningLottoDto);
+        Lottos lottos = lottoPurchaseService.change(responseLottosDto);
 
-    public long calculateTotalWinningAmount() {
-        return lottos.getLottos().stream()
-                .map(this::createLottoResultDto)
-                .map(lottoResultCalculator::calculateResultAmount)
-                .mapToLong(Long::longValue)
-                .sum();
+        Map<Rank, Integer> rankAndCount = winningLottoService.calculate(winningLotto, lottos); // 이 부분 작성해야한다.
+
+        return new WinningStatisticsDto(rankAndCount);
     }
 
-    public double rateOfReturn(long inputLottoPurchaseMoney, long totalLottoWinningAmount) {
-       return RateOfReturnCalculator.calculateRateOfReturn(inputLottoPurchaseMoney, totalLottoWinningAmount);
-    }
-
-    private LottoResultDto createLottoResultDto(Lotto lotto) {
-        Rank rank = winningLotto.calculateRank(lotto);
-        return new LottoResultDto(rank.getCount(), rank.getMatchBonus());
+    public RateOfReturnDto showRateOfReturn(WinningStatisticsDto winningStatisticsDto,
+                                            ResponseLottosDto responseLottosDto) {
+        double rateOfReturn = rateOfReturnService.calculate(winningStatisticsDto, responseLottosDto);
+        return new RateOfReturnDto(rateOfReturn);
     }
 }

@@ -4,6 +4,7 @@ import java.util.List;
 import lotto.model.Lotto;
 import lotto.model.Rank;
 import lotto.model.WinningLotto;
+import lotto.service.WinningLottoService;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -15,10 +16,11 @@ public class RankTest {
         //given
         Lotto lotto = Lotto.makeLotto(List.of(1, 2, 3, 4, 5, 6));
         WinningLotto winningLotto = WinningLotto.makeWinningLotto(List.of(1, 2, 3, 4, 5, 6), 10);
+        WinningLottoService winningLottoService = new WinningLottoService();
 
-        Rank expectRank = Rank.FIRST;
         //when
-        Rank actualRank = winningLotto.calculateRank(lotto);
+        Rank expectRank = Rank.FIRST;
+        Rank actualRank = winningLottoService.calculateRank(winningLotto, lotto);
 
         //then
         Assertions.assertThat(expectRank).isEqualTo(actualRank);
@@ -30,10 +32,11 @@ public class RankTest {
         //given
         Lotto lotto = Lotto.makeLotto(List.of(1, 2, 3, 4, 5, 10));
         WinningLotto winningLotto = WinningLotto.makeWinningLotto(List.of(1, 2, 3, 4, 5, 6), 10);
+        WinningLottoService winningLottoService = new WinningLottoService();
 
-        Rank expectRank = Rank.SECOND;
         //when
-        Rank actualRank = winningLotto.calculateRank(lotto);
+        Rank expectRank = Rank.SECOND;
+        Rank actualRank = winningLottoService.calculateRank(winningLotto, lotto);
 
         //then
         Assertions.assertThat(expectRank).isEqualTo(actualRank);
@@ -45,10 +48,11 @@ public class RankTest {
         //given
         Lotto lotto = Lotto.makeLotto(List.of(1, 2, 3, 4, 5, 6));
         WinningLotto winningLotto = WinningLotto.makeWinningLotto(List.of(1, 2, 3, 4, 5, 7), 10);
+        WinningLottoService winningLottoService = new WinningLottoService();
 
-        Rank expectRank = Rank.THIRD;
         //when
-        Rank actualRank = winningLotto.calculateRank(lotto);
+        Rank expectRank = Rank.THIRD;
+        Rank actualRank = winningLottoService.calculateRank(winningLotto, lotto);
 
         //then
         Assertions.assertThat(expectRank).isEqualTo(actualRank);
@@ -60,10 +64,11 @@ public class RankTest {
         //given
         Lotto lotto = Lotto.makeLotto(List.of(1, 2, 3, 4, 5, 6));
         WinningLotto winningLotto = WinningLotto.makeWinningLotto(List.of(1, 2, 3, 4, 11, 12), 10);
+        WinningLottoService winningLottoService = new WinningLottoService();
 
-        Rank expectRank = Rank.FOURTH;
         //when
-        Rank actualRank = winningLotto.calculateRank(lotto);
+        Rank expectRank = Rank.FOURTH;
+        Rank actualRank = winningLottoService.calculateRank(winningLotto, lotto);
 
         //then
         Assertions.assertThat(expectRank).isEqualTo(actualRank);
@@ -75,10 +80,11 @@ public class RankTest {
         //given
         Lotto lotto = Lotto.makeLotto(List.of(1, 2, 3, 11, 12, 13));
         WinningLotto winningLotto = WinningLotto.makeWinningLotto(List.of(1, 2, 3, 4, 5, 6), 10);
+        WinningLottoService winningLottoService = new WinningLottoService();
 
-        Rank expectRank = Rank.FIFTH;
         //when
-        Rank actualRank = winningLotto.calculateRank(lotto);
+        Rank expectRank = Rank.FIFTH;
+        Rank actualRank = winningLottoService.calculateRank(winningLotto, lotto);
 
         //then
         Assertions.assertThat(expectRank).isEqualTo(actualRank);
@@ -90,10 +96,11 @@ public class RankTest {
         //given
         Lotto lotto = Lotto.makeLotto(List.of(1, 2, 11, 12, 13, 14));
         WinningLotto winningLotto = WinningLotto.makeWinningLotto(List.of(1, 2, 3, 4, 5, 6), 10);
+        WinningLottoService winningLottoService = new WinningLottoService();
 
-        Rank expectRank = Rank.NOTHING;
         //when
-        Rank actualRank = winningLotto.calculateRank(lotto);
+        Rank expectRank = Rank.NOTHING;
+        Rank actualRank = winningLottoService.calculateRank(winningLotto, lotto);
 
         //then
         Assertions.assertThat(expectRank).isEqualTo(actualRank);
@@ -105,10 +112,11 @@ public class RankTest {
         //given
         Lotto lotto = Lotto.makeLotto(List.of(1, 11, 12, 13, 14, 15));
         WinningLotto winningLotto = WinningLotto.makeWinningLotto(List.of(1, 2, 3, 4, 5, 6), 10);
+        WinningLottoService winningLottoService = new WinningLottoService();
 
-        Rank expectRank = Rank.NOTHING;
         //when
-        Rank actualRank = winningLotto.calculateRank(lotto);
+        Rank expectRank = Rank.NOTHING;
+        Rank actualRank = winningLottoService.calculateRank(winningLotto, lotto);
 
         //then
         Assertions.assertThat(expectRank).isEqualTo(actualRank);
@@ -120,10 +128,11 @@ public class RankTest {
         //given
         Lotto lotto = Lotto.makeLotto(List.of(10, 11, 12, 13, 14, 15));
         WinningLotto winningLotto = WinningLotto.makeWinningLotto(List.of(1, 2, 3, 4, 5, 6), 10);
+        WinningLottoService winningLottoService = new WinningLottoService();
 
-        Rank expectRank = Rank.NOTHING;
         //when
-        Rank actualRank = winningLotto.calculateRank(lotto);
+        Rank expectRank = Rank.NOTHING;
+        Rank actualRank = winningLottoService.calculateRank(winningLotto, lotto);
 
         //then
         Assertions.assertThat(expectRank).isEqualTo(actualRank);

@@ -1,7 +1,7 @@
 package lotto.view;
 
 import java.text.DecimalFormat;
-import lotto.dto.PurchasedLottosDto;
+import lotto.dto.RateOfReturnDto;
 import lotto.dto.ResponseLottosDto;
 import lotto.dto.ResponseLottosDto.InnerLotto;
 import lotto.dto.WinningStatisticsDto;
@@ -15,6 +15,7 @@ public class OutputView {
     }
 
     public void printPurchaseCountMessage(ResponseLottosDto responseLottosDto) {
+        lineBreaksForUi();
         System.out.println(responseLottosDto.getLottoCount() + "개를 구매했습니다.");
     }
 
@@ -25,14 +26,17 @@ public class OutputView {
     }
 
     public void printWinningNumberMessage() {
+        lineBreaksForUi();
         print("당첨 번호를 입력해 주세요.");
     }
 
     public void printBonusNumberMessage() {
+        lineBreaksForUi();
         print("보너스 번호를 입력해 주세요.");
     }
 
     public void printWinningStatistics(WinningStatisticsDto winningSattisticeDto) {
+        lineBreaksForUi();
         print("당첨 통계");
         print("---");
 
@@ -44,12 +48,18 @@ public class OutputView {
                         System.out.println(rank.getCount() + "개 일치 (" + decimalFormat.format(rank.prizeMoney()) + "원) - " + count + "개");
                     }
                 });
+    }
 
-        System.out.println("총 수익률은 " + winningSattisticeDto.getRateOfReturn() + "%입니다.");
+    public void printRateOfReturn(RateOfReturnDto rateOfReturnDto) {
+        System.out.println("총 수익률은 " + rateOfReturnDto.rateOfReturn()+ "%입니다.");
     }
 
     private void print(String message) {
         System.out.println(message);
+    }
+
+    private void lineBreaksForUi() {
+        System.out.println();
     }
 
     public DecimalFormat getDecimalFormat() {

@@ -4,7 +4,6 @@ import static org.assertj.core.api.Assertions.*;
 
 import java.util.List;
 import lotto.model.Lotto;
-import lotto.model.Rank;
 import lotto.model.WinningLotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -19,12 +18,13 @@ public class WinningLottoTest {
         int bonusNumber = 10;
         WinningLotto winningLotto = WinningLotto.makeWinningLotto(winningNumbers, bonusNumber);
         Lotto lotto = Lotto.makeLotto(List.of(1, 2, 3, 4, 5, 6));
-        int expectMatchCount = 6;
+
         //when
-        Rank rank = winningLotto.calculateRank(lotto);
-        int matchCount = rank.getCount();
+        int expectMatchCount = 6;
+        int actualMatchCount = winningLotto.calculateMatchCount(lotto);
+
         //then
-        assertThat(expectMatchCount).isEqualTo(matchCount);
+        assertThat(expectMatchCount).isEqualTo(actualMatchCount);
     }
 
     @Test
@@ -33,21 +33,19 @@ public class WinningLottoTest {
         //given
         List<Integer> winningNumbers = List.of(1,2,3,4,5,45);
         int bonusNumber = 10;
-
         WinningLotto winningLotto = WinningLotto.makeWinningLotto(winningNumbers, bonusNumber);
+
         Lotto lotto = Lotto.makeLotto(List.of(1, 2, 3, 4, 5, 10));
 
+        //when
         int expectMatchCount = 5;
         boolean expectBonusCorrect = true;
-
-        //when
-        Rank rank = winningLotto.calculateRank(lotto);
-        int matchCount = rank.getCount();
-        boolean matchBonus = rank.getMatchBonus();
+        int actualMatchCount = winningLotto.calculateMatchCount(lotto);
+        boolean actualBonusCorrect = winningLotto.checkBonus(lotto);
 
         //then
-        assertThat(expectMatchCount).isEqualTo(matchCount);
-        assertThat(expectBonusCorrect).isEqualTo(matchBonus);
+        assertThat(expectMatchCount).isEqualTo(actualMatchCount);
+        assertThat(expectBonusCorrect).isEqualTo(actualBonusCorrect);
     }
 
     @Test
@@ -60,17 +58,15 @@ public class WinningLottoTest {
         WinningLotto winningLotto = WinningLotto.makeWinningLotto(winningNumbers, bonusNumber);
         Lotto lotto = Lotto.makeLotto(List.of(1, 2, 3, 4, 5, 6));
 
+        //when
         int expectMatchCount = 5;
         boolean expectBonusCorrect = false;
-
-        //when
-        Rank rank = winningLotto.calculateRank(lotto);
-        int matchCount = rank.getCount();
-        boolean matchBonus = rank.getMatchBonus();
+        int actualMatchCount = winningLotto.calculateMatchCount(lotto);
+        boolean actualBonusCorrect = winningLotto.checkBonus(lotto);
 
         //then
-        assertThat(expectMatchCount).isEqualTo(matchCount);
-        assertThat(expectBonusCorrect).isEqualTo(matchBonus);
+        assertThat(expectMatchCount).isEqualTo(actualMatchCount);
+        assertThat(expectBonusCorrect).isEqualTo(actualBonusCorrect);
     }
 
     @Test
@@ -81,12 +77,13 @@ public class WinningLottoTest {
         int bonusNumber = 10;
         WinningLotto winningLotto = WinningLotto.makeWinningLotto(winningNumbers, bonusNumber);
         Lotto lotto = Lotto.makeLotto(List.of(1, 2, 3, 4, 5, 6));
-        int expectMatchCount = 4;
+
         //when
-        Rank rank = winningLotto.calculateRank(lotto);
-        int matchCount = rank.getCount();
+        int expectMatchCount = 4;
+        int actualMatchCount = winningLotto.calculateMatchCount(lotto);
+
         //then
-        assertThat(expectMatchCount).isEqualTo(matchCount);
+        assertThat(expectMatchCount).isEqualTo(actualMatchCount);
     }
 
     @Test
@@ -97,12 +94,13 @@ public class WinningLottoTest {
         int bonusNumber = 10;
         WinningLotto winningLotto = WinningLotto.makeWinningLotto(winningNumbers, bonusNumber);
         Lotto lotto = Lotto.makeLotto(List.of(1, 2, 3, 4, 5, 6));
-        int expectMatchCount = 3;
+
         //when
-        Rank rank = winningLotto.calculateRank(lotto);
-        int matchCount = rank.getCount();
+        int expectMatchCount = 3;
+        int actualMatchCount = winningLotto.calculateMatchCount(lotto);
+
         //then
-        assertThat(expectMatchCount).isEqualTo(matchCount);
+        assertThat(expectMatchCount).isEqualTo(actualMatchCount);
     }
 
     @Test
@@ -113,12 +111,13 @@ public class WinningLottoTest {
         int bonusNumber = 10;
         WinningLotto winningLotto = WinningLotto.makeWinningLotto(winningNumbers, bonusNumber);
         Lotto lotto = Lotto.makeLotto(List.of(1, 2, 3, 4, 5, 6));
-        int expectMatchCount = 0;
+
         //when
-        Rank rank = winningLotto.calculateRank(lotto);
-        int matchCount = rank.getCount();
+        int expectMatchCount = 2;
+        int actualMatchCount = winningLotto.calculateMatchCount(lotto);
+
         //then
-        assertThat(expectMatchCount).isEqualTo(matchCount);
+        assertThat(expectMatchCount).isEqualTo(actualMatchCount);
     }
 
     @Test
@@ -129,12 +128,13 @@ public class WinningLottoTest {
         int bonusNumber = 10;
         WinningLotto winningLotto = WinningLotto.makeWinningLotto(winningNumbers, bonusNumber);
         Lotto lotto = Lotto.makeLotto(List.of(1, 2, 3, 4, 5, 6));
-        int expectMatchCount = 0;
+
         //when
-        Rank rank = winningLotto.calculateRank(lotto);
-        int matchCount = rank.getCount();
+        int expectMatchCount = 1;
+        int actualMatchCount = winningLotto.calculateMatchCount(lotto);
+
         //then
-        assertThat(expectMatchCount).isEqualTo(matchCount);
+        assertThat(expectMatchCount).isEqualTo(actualMatchCount);
     }
 
     @Test
@@ -145,12 +145,12 @@ public class WinningLottoTest {
         int bonusNumber = 10;
         WinningLotto winningLotto = WinningLotto.makeWinningLotto(winningNumbers, bonusNumber);
         Lotto lotto = Lotto.makeLotto(List.of(1, 2, 3, 4, 5, 6));
-        int expectMatchCount = 0;
         //when
-        Rank rank = winningLotto.calculateRank(lotto);
-        int matchCount = rank.getCount();
+        int expectMatchCount = 0;
+        int actualMatchCount = winningLotto.calculateMatchCount(lotto);
+
         //then
-        assertThat(expectMatchCount).isEqualTo(matchCount);
+        assertThat(expectMatchCount).isEqualTo(actualMatchCount);
     }
 
     @Test
