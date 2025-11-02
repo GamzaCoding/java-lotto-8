@@ -65,4 +65,8 @@ public class OutputView {
     public DecimalFormat getDecimalFormat() {
         return decimalFormat;
     }
+
+    public void printExceptionMessage(String message) {
+        System.out.println(message);
+    }
 }
