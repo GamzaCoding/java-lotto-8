@@ -3,14 +3,9 @@ package lotto.dto;
 import java.util.Map;
 import lotto.model.Rank;
 
-public class WinningStatisticsDto {
-    private final Map<Rank, Integer> rankAndCount;
+public record WinningStatisticsDto(Map<Rank, Integer> rankCountStatistics) {
 
-    public WinningStatisticsDto(Map<Rank, Integer> rankAndCount) {
-        this.rankAndCount = rankAndCount;
-    }
-
-    public Map<Rank, Integer> getRankAndCount() {
-        return rankAndCount;
+    public static WinningStatisticsDto of(Map<Rank, Integer> rankCountStatistics) {
+        return new WinningStatisticsDto(Map.copyOf(rankCountStatistics));
     }
 }

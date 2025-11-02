@@ -35,25 +35,6 @@ public class Controller {
         displayRateOfReturn(rateOfReturnDto);
     }
 
-    private <T> T process(Supplier<T> supplier) {
-        try {
-            return supplier.get();
-        } catch (IllegalArgumentException e) {
-            outputView.printExceptionMessage(e.getMessage());
-            process(supplier);
-        }
-        return supplier.get();
-    }
-
-    private RateOfReturnDto calculateRateOfReturn(WinningStatisticsDto winningStatisticsDto,
-                                                  ResponseLottosDto responseLottosDto) {
-        return lottoMainService.showRateOfReturn(winningStatisticsDto, responseLottosDto);
-    }
-
-    private void displayRateOfReturn(RateOfReturnDto rateOfReturnDto) {
-        outputView.printRateOfReturn(rateOfReturnDto);
-    }
-
     private ResponseLottosDto requestPurchaseLottos() {
         outputView.printPurchaseAmountMessage();
         String inputPurchaseAmount = inputView.inputPurchaseAmount();
@@ -70,7 +51,7 @@ public class Controller {
     private WinningLottoDto requestWinningLottoInput() {
         List<Integer> winningNumbers = process(this::readWinningNumbers);
         int bonusNumber = process(this::readBonusNumber);
-        return lottoMainService.createWinningLottoDto(winningNumbers, bonusNumber);
+        return lottoMainService.calculateWinningLotto(winningNumbers, bonusNumber);
     }
 
     private List<Integer> readWinningNumbers() {
@@ -88,11 +69,30 @@ public class Controller {
         return Integer.parseInt(bonusNumber);
     }
 
+    private WinningStatisticsDto calculateWinningStatistics(WinningLottoDto winningLottoDto, ResponseLottosDto responseLottosDto) {
+        return lottoMainService.calculateWinningStatistics(winningLottoDto, responseLottosDto);
+    }
+
     private void displayWinningStatistics(WinningStatisticsDto winningStatisticsDto) {
         outputView.printWinningStatistics(winningStatisticsDto);
     }
 
-    private WinningStatisticsDto calculateWinningStatistics(WinningLottoDto winningLottoDto, ResponseLottosDto responseLottosDto) {
-        return lottoMainService.showWinningStatistics(winningLottoDto, responseLottosDto);
+    private RateOfReturnDto calculateRateOfReturn(WinningStatisticsDto winningStatisticsDto,
+                                                  ResponseLottosDto responseLottosDto) {
+        return lottoMainService.calculateRateOfReturn(winningStatisticsDto, responseLottosDto);
+    }
+
+    private void displayRateOfReturn(RateOfReturnDto rateOfReturnDto) {
+        outputView.printRateOfReturn(rateOfReturnDto);
+    }
+
+    private <T> T process(Supplier<T> supplier) {
+        try {
+            return supplier.get();
+        } catch (IllegalArgumentException e) {
+            outputView.printExceptionMessage(e.getMessage());
+            process(supplier);
+        }
+        return supplier.get();
     }
 }

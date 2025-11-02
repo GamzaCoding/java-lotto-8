@@ -13,8 +13,8 @@ public class LottoPurchaseService {
     }
 
     public Lottos change(ResponseLottosDto responseLottosDto) {
-        List<Lotto> lottos = responseLottosDto.getResponseLottos().stream()
-                .map(innerLotto -> Lotto.makeLotto(innerLotto.getNumbers()))
+        List<Lotto> lottos = responseLottosDto.lottos().stream()
+                .map(innerLotto -> Lotto.makeLotto(innerLotto.numbers()))
                 .toList();
 
         return Lottos.makeLottos(lottos);

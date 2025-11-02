@@ -20,8 +20,8 @@ public class OutputView {
     }
 
     public void printPurchasedLottos(ResponseLottosDto responseLottosDto) {
-        responseLottosDto.getResponseLottos().stream()
-                .map(InnerLotto::getNumbers)
+        responseLottosDto.lottos().stream()
+                .map(InnerLotto::numbers)
                 .forEach(numbers -> print(numbers.toString()));
     }
 
@@ -40,7 +40,7 @@ public class OutputView {
         print("당첨 통계");
         print("---");
 
-        winningSattisticeDto.getRankAndCount()
+        winningSattisticeDto.rankCountStatistics()
                 .forEach((rank, count) -> {
                     if (rank.getCount() == 5 && rank.prizeMoney() == 30_000_000) {
                         System.out.println(

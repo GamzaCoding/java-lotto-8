@@ -26,23 +26,25 @@ public class LottoMainService {
         return ResponseLottosDto.of(lottos);
     }
 
-    public WinningLottoDto createWinningLottoDto(List<Integer> winningNumbers, int bonusNumberLong) {
-        return new WinningLottoDto(winningNumbers, bonusNumberLong);
+    public WinningStatisticsDto calculateWinningStatistics(WinningLottoDto winningLottoDto,
+                                                           ResponseLottosDto responseLottosDto) {
+        Map<Rank, Integer> rankCountStatistics = calculateRankAndCount(winningLottoDto, responseLottosDto);
+        return WinningStatisticsDto.of(rankCountStatistics);
     }
 
-    public WinningStatisticsDto showWinningStatistics(WinningLottoDto winningLottoDto,
-                                                      ResponseLottosDto responseLottosDto) {
+    private Map<Rank, Integer> calculateRankAndCount(WinningLottoDto winningLottoDto, ResponseLottosDto responseLottosDto) {
         WinningLotto winningLotto = winningLottoService.change(winningLottoDto);
         Lottos lottos = lottoPurchaseService.change(responseLottosDto);
-
-        Map<Rank, Integer> rankAndCount = winningLottoService.calculate(winningLotto, lottos); // 이 부분 작성해야한다.
-
-        return new WinningStatisticsDto(rankAndCount);
+        return winningLottoService.calculate(winningLotto, lottos);
     }
 
-    public RateOfReturnDto showRateOfReturn(WinningStatisticsDto winningStatisticsDto,
-                                            ResponseLottosDto responseLottosDto) {
+    public RateOfReturnDto calculateRateOfReturn(WinningStatisticsDto winningStatisticsDto,
+                                                 ResponseLottosDto responseLottosDto) {
         double rateOfReturn = rateOfReturnService.calculate(winningStatisticsDto, responseLottosDto);
-        return new RateOfReturnDto(rateOfReturn);
+        return RateOfReturnDto.of(rateOfReturn);
+    }
+
+    public WinningLottoDto calculateWinningLotto(List<Integer> winningNumbers, int bonusNumber) {
+        return WinningLottoDto.from(winningNumbers, bonusNumber);
     }
 }
