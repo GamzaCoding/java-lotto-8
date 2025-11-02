@@ -20,7 +20,7 @@ public class RateOfReturnService {
     }
 
     private double calculateRateOfReturn(long inputLottoPurchaseMoney, long totalLottoWinningAmount) {
-        double rateOfReturn = (double) (totalLottoWinningAmount - inputLottoPurchaseMoney) / (inputLottoPurchaseMoney) * 100;
+        double rateOfReturn = (double) totalLottoWinningAmount / inputLottoPurchaseMoney * 100;
         BigDecimal rateOfReturnBigDe = new BigDecimal(rateOfReturn).setScale(1, RoundingMode.HALF_EVEN);
 
         return rateOfReturnBigDe.doubleValue();

@@ -17,7 +17,7 @@ class ApplicationTest extends NsTest {
         assertSimpleTest(() -> {
             runException("1000j");
             assertThat(output()).contains(ERROR_MESSAGE);
-        });
+        }); // try - catch로 감싸자!!
     }
 
     @Test
