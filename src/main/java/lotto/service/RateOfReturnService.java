@@ -14,9 +14,9 @@ public class RateOfReturnService {
     }
 
     private long calculateTotalWinningAmount(WinningStatisticsDto winningStatisticsDto) {
-       return winningStatisticsDto.getRankAndCount().entrySet().stream()
-               .mapToLong(entry -> (long) entry.getKey().prizeMoney() * entry.getValue())
-               .sum();
+        return winningStatisticsDto.getRankAndCount().entrySet().stream()
+                .mapToLong(entry -> (long) entry.getKey().prizeMoney() * entry.getValue())
+                .sum();
     }
 
     private double calculateRateOfReturn(long inputLottoPurchaseMoney, long totalLottoWinningAmount) {

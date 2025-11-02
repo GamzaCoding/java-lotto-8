@@ -15,24 +15,24 @@ public class Controller {
 
     private final OutputView outputView;
     private final InputView inputView;
-    private final LottoMainService lottoMainService = new LottoMainService();
+    private final LottoMainService lottoMainService;
 
-    public Controller(InputView inputView, OutputView outputView) {
+    public Controller(InputView inputView, OutputView outputView, LottoMainService lottoMainService) {
         this.inputView = inputView;
         this.outputView = outputView;
+        this.lottoMainService = lottoMainService;
     }
 
     public void run() {
+        ResponseLottosDto responseLottosDto = process(this::requestPurchaseLottos);
+        displayPurchasedLottos(responseLottosDto);
 
-        ResponseLottosDto responseLottosDto = process(this::buyLottos);
-        showBoughtLottos(responseLottosDto);
+        WinningLottoDto winningLottoDto = requestWinningLottoInput();
+        WinningStatisticsDto winningStatisticsDto = calculateWinningStatistics(winningLottoDto, responseLottosDto);
+        displayWinningStatistics(winningStatisticsDto);
 
-        WinningLottoDto winningLottoDto = process(this::inputWinningLottoInformation);
-        WinningStatisticsDto winningStatisticsDto = playGame(winningLottoDto, responseLottosDto); // 메서드명 변경해야 한다.
-        showWinningStatistics(winningStatisticsDto);
-
-        RateOfReturnDto rateOfReturnDto = findRateOfReturn(winningStatisticsDto, responseLottosDto);  // 메서드명 변경해야한다.
-        showRateOfReturn(rateOfReturnDto);
+        RateOfReturnDto rateOfReturnDto = calculateRateOfReturn(winningStatisticsDto, responseLottosDto);
+        displayRateOfReturn(rateOfReturnDto);
     }
 
     private <T> T process(Supplier<T> supplier) {
@@ -42,20 +42,19 @@ public class Controller {
             outputView.printExceptionMessage(e.getMessage());
             process(supplier);
         }
-        return supplier.get(); //... 이건 진짜 무슨 로직인지 모르겠다.
+        return supplier.get();
     }
 
-    private RateOfReturnDto findRateOfReturn(WinningStatisticsDto winningStatisticsDto,
-                                             ResponseLottosDto responseLottosDto) {
+    private RateOfReturnDto calculateRateOfReturn(WinningStatisticsDto winningStatisticsDto,
+                                                  ResponseLottosDto responseLottosDto) {
         return lottoMainService.showRateOfReturn(winningStatisticsDto, responseLottosDto);
     }
 
-    private void showRateOfReturn(RateOfReturnDto rateOfReturnDto) {
+    private void displayRateOfReturn(RateOfReturnDto rateOfReturnDto) {
         outputView.printRateOfReturn(rateOfReturnDto);
     }
 
-
-    private ResponseLottosDto buyLottos() {
+    private ResponseLottosDto requestPurchaseLottos() {
         outputView.printPurchaseAmountMessage();
         String inputPurchaseAmount = inputView.inputPurchaseAmount();
         long inputPurchaseAmountLong = Long.parseLong(inputPurchaseAmount);// 이 부분 고민해야 한다.
@@ -63,31 +62,37 @@ public class Controller {
         return lottoMainService.buyLottos(inputPurchaseAmountLong);
     }
 
-    private void showBoughtLottos(ResponseLottosDto responseLottosDto) {
+    private void displayPurchasedLottos(ResponseLottosDto responseLottosDto) {
         outputView.printPurchaseCountMessage(responseLottosDto);
         outputView.printPurchasedLottos(responseLottosDto);
     }
 
-    private WinningLottoDto inputWinningLottoInformation() {
+    private WinningLottoDto requestWinningLottoInput() {
+        List<Integer> winningNumbers = process(this::readWinningNumbers);
+        int bonusNumber = process(this::readBonusNumber);
+        return lottoMainService.createWinningLottoDto(winningNumbers, bonusNumber);
+    }
+
+    private List<Integer> readWinningNumbers() {
         outputView.printWinningNumberMessage();
         String winningNumber = inputView.inputWinningNumber();
-        List<Integer> winningNumbers = Arrays.stream(winningNumber.split(","))
+        return Arrays.stream(winningNumber.split(","))
                 .map(String::strip)
                 .map(Integer::parseInt)
                 .toList();
-        // 이 라인을 기준으로 메서드 2개로 분리
-        outputView.printBonusNumberMessage();
-        String bonusNumberString = inputView.inputBonusNumber();
-        int bonusNumberLong = Integer.parseInt(bonusNumberString); // 이 부분 고민해야 한다.
-
-        return lottoMainService.createWinningLottoDto(winningNumbers, bonusNumberLong);
     }
 
-    private void showWinningStatistics(WinningStatisticsDto winningStatisticsDto) {
+    private int readBonusNumber() {
+        outputView.printBonusNumberMessage();
+        String bonusNumber = inputView.inputBonusNumber();
+        return Integer.parseInt(bonusNumber);
+    }
+
+    private void displayWinningStatistics(WinningStatisticsDto winningStatisticsDto) {
         outputView.printWinningStatistics(winningStatisticsDto);
     }
 
-    private WinningStatisticsDto playGame(WinningLottoDto winningLottoDto, ResponseLottosDto responseLottosDto) {
+    private WinningStatisticsDto calculateWinningStatistics(WinningLottoDto winningLottoDto, ResponseLottosDto responseLottosDto) {
         return lottoMainService.showWinningStatistics(winningLottoDto, responseLottosDto);
     }
 }

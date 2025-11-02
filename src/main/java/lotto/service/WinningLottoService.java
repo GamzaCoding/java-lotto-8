@@ -10,8 +10,8 @@ import lotto.model.WinningLotto;
 
 public class WinningLottoService {
 
-    public Map<Rank, Integer> calculate(WinningLotto winningLotto, Lottos lottos){
-        Map <Rank, Integer> rankAndCount = new LinkedHashMap<>();
+    public Map<Rank, Integer> calculate(WinningLotto winningLotto, Lottos lottos) {
+        Map<Rank, Integer> rankAndCount = new LinkedHashMap<>();
 
         rankAndCount.put(Rank.FIFTH, 0);
         rankAndCount.put(Rank.FOURTH, 0);
@@ -20,7 +20,7 @@ public class WinningLottoService {
         rankAndCount.put(Rank.FIRST, 0);
 
         lottos.getLottos().stream()
-                .forEach(lotto -> rankAndCount.merge(calculateRank(winningLotto, lotto),1, Integer::sum));
+                .forEach(lotto -> rankAndCount.merge(calculateRank(winningLotto, lotto), 1, Integer::sum));
 
         rankAndCount.remove(Rank.NOTHING);
 
@@ -30,7 +30,7 @@ public class WinningLottoService {
     public Rank calculateRank(WinningLotto winningLotto, Lotto lotto) {
         int matchCount = calculateMatchCount(winningLotto, lotto);
         boolean matchBonus = checkBonus(winningLotto, lotto);
-        return Rank.findByCount(matchCount,matchBonus);
+        return Rank.findByCount(matchCount, matchBonus);
     }
 
     private int calculateMatchCount(WinningLotto winningLotto, Lotto lotto) {

@@ -41,17 +41,21 @@ public class OutputView {
         print("---");
 
         winningSattisticeDto.getRankAndCount()
-                .forEach((rank, count)-> {
+                .forEach((rank, count) -> {
                     if (rank.getCount() == 5 && rank.prizeMoney() == 30_000_000) {
-                        System.out.println(rank.getCount() + "개 일치, 보너스 볼 일치 (" + decimalFormat.format(rank.prizeMoney()) + "원) - " + count + "개");
-                    } else {
-                        System.out.println(rank.getCount() + "개 일치 (" + decimalFormat.format(rank.prizeMoney()) + "원) - " + count + "개");
+                        System.out.println(
+                                rank.getCount() + "개 일치, 보너스 볼 일치 (" + decimalFormat.format(rank.prizeMoney()) + "원) - "
+                                        + count + "개");
+                    } else { // 이부분 수정해야 한다.
+                        System.out.println(
+                                rank.getCount() + "개 일치 (" + decimalFormat.format(rank.prizeMoney()) + "원) - " + count
+                                        + "개");
                     }
                 });
     }
 
     public void printRateOfReturn(RateOfReturnDto rateOfReturnDto) {
-        System.out.println("총 수익률은 " + rateOfReturnDto.rateOfReturn()+ "%입니다.");
+        System.out.println("총 수익률은 " + rateOfReturnDto.rateOfReturn() + "%입니다.");
     }
 
     private void print(String message) {

@@ -11,7 +11,7 @@ public class ResponseLottosDto {
     }
 
     public static ResponseLottosDto of(Lottos lottos) {
-        List<InnerLotto> responseLottos =  lottos.getLottos().stream()
+        List<InnerLotto> responseLottos = lottos.getLottos().stream()
                 .map(lotto -> InnerLotto.of(lotto.getNumbers()))
                 .toList();
         return new ResponseLottosDto(responseLottos);

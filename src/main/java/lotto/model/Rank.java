@@ -41,8 +41,8 @@ public enum Rank {
             return Rank.THIRD;
         }
 
-        for(Rank rank : values()) {
-            if(rank.count == count) {
+        for (Rank rank : values()) {
+            if (rank.count == count) {
                 return rank;
             }
         }

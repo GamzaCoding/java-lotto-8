@@ -1,6 +1,8 @@
 package lotto.model;
 
-import static lotto.validation.ModelValidation.*;
+import static lotto.validation.ModelValidation.validateDuplicateNumber;
+import static lotto.validation.ModelValidation.validateLottoNumberCount;
+import static lotto.validation.ModelValidation.validateLottoNumberRange;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
