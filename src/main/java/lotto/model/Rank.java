@@ -1,5 +1,7 @@
 package lotto.model;
 
+import java.util.List;
+
 public enum Rank {
     FIRST(6, 2_000_000_000),
     SECOND(5, 30_000_000),
@@ -17,19 +19,8 @@ public enum Rank {
         this.prizeMoney = prizeMoney;
     }
 
-    public int getCount() {
-        return count;
-    }
-
-    public int prizeMoney() {
-        return prizeMoney;
-    }
-
-    public boolean getMatchBonus() {
-        if (this == Rank.SECOND) {
-            return true;
-        }
-        return false;
+    public static List<Rank> getMeaningfulRanks() {
+        return List.of(FIRST, SECOND, THIRD, FOURTH, FIFTH);
     }
 
     public static Rank findByCount(int count, boolean bonusMatch) {
@@ -47,5 +38,13 @@ public enum Rank {
             }
         }
         return Rank.NOTHING;
+    }
+
+    public int getCount() {
+        return count;
+    }
+
+    public int prizeMoney() {
+        return prizeMoney;
     }
 }

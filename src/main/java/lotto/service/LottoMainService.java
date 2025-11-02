@@ -22,7 +22,7 @@ public class LottoMainService {
     }
 
     public ResponseLottosDto buyLottos(long purchaseAmount) {
-        Lottos lottos = lottoPurchaseService.buy(purchaseAmount);
+        Lottos lottos = lottoPurchaseService.purchaseLottos(purchaseAmount);
         return ResponseLottosDto.of(lottos);
     }
 
@@ -33,8 +33,8 @@ public class LottoMainService {
     }
 
     private Map<Rank, Integer> calculateRankAndCount(WinningLottoDto winningLottoDto, ResponseLottosDto responseLottosDto) {
-        WinningLotto winningLotto = winningLottoService.change(winningLottoDto);
-        Lottos lottos = lottoPurchaseService.change(responseLottosDto);
+        WinningLotto winningLotto = winningLottoService.convertToWinningLotto(winningLottoDto);
+        Lottos lottos = lottoPurchaseService.convertToLottos(responseLottosDto);
         return winningLottoService.calculate(winningLotto, lottos);
     }
 
