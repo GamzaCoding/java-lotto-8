@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import java.util.Map;
+import lotto.dto.ResponseLottosDto;
 import lotto.service.LottoPurchaseService;
 import lotto.view.InputView;
 import lotto.service.LottoMainService;
@@ -14,28 +15,36 @@ import lotto.dto.WinningStatisticsDto;
 public class Controller {
     private final OutputView outputView = new OutputView();
     private final InputView inputView = new InputView();
+    private final LottoMainService lottoMainService = new LottoMainService();
 
     public void run() {
+
+        buyLottos();
+
         StartDto startDto = start();
         WinningStatisticsDto winningStatisticsDto = processLotto(startDto);
         result(winningStatisticsDto);
     }
 
-    private StartDto start() {
+
+    private void buyLottos() {
         outputView.printPurchaseAmountMessage();
         String inputPurchaseAmount = inputView.inputPurchaseAmount();
-        long inputPurchaseAmountLong = Long.parseLong(inputPurchaseAmount);  // 구매한 금액
+        long inputPurchaseAmountLong = Long.parseLong(inputPurchaseAmount);// 구매한 금액
 
-        Lottos lottos = LottoPurchaseService.purchaseLottos(inputPurchaseAmountLong); // 입력한 금액에 맞는 갯수의 랜덤한 로또들 생성
-        outputView.printPurchaseCountMessage((int) inputPurchaseAmountLong);
+        ResponseLottosDto responseLottosDto = lottoMainService.buyLottos(inputPurchaseAmountLong);
+        outputView.printPurchaseCountMessage(responseLottosDto);
+        outputView.printPurchasedLottos(responseLottosDto);
+    }
 
-        outputView.printPurchasedLotto(new PurchasedLottosDto(lottos));
+    private StartDto start() {
 
         outputView.printWinningNumberMessage();
         String inputedWinningNumber = inputView.inputWinningNumber(); // 담첨 로또 번호 입력
         outputView.printBonusNumberMessage();
         String bonusNumberString = inputView.inputBonusNumber();
-        WinningLotto winningLotto = WinningLotto.of(inputedWinningNumber, Integer.parseInt(bonusNumberString)); // 당첨 로또 생성
+        WinningLotto winningLotto = WinningLotto.of(inputedWinningNumber, Integer.parseInt(bonusNumberString));
+        // 당첨 로또 생성은 WinningLottoService를 통해서 하도록 할까? controller에서 직접 model을 알고 있는건 좋지 않다.
 
         return new StartDto(inputPurchaseAmountLong, lottos, winningLotto);
     }

@@ -18,7 +18,7 @@ public class InputView {
     public String inputWinningNumber() {
         String input = Console.readLine();
         validateWinningNumberFormat(input);
-        return input;
+        return  input;
     }
 
     public String inputBonusNumber() {

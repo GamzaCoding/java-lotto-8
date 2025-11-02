@@ -1,20 +1,26 @@
 package lotto.service;
 
 import lotto.dto.LottoResultDto;
+import lotto.dto.ResponseLottosDto;
 import lotto.model.Lotto;
 import lotto.model.Lottos;
 import lotto.model.Rank;
-import lotto.model.WinningLotto;
 import lotto.util.RateOfReturnCalculator;
 
 public class LottoMainService {
-    private final Lottos lottos;
-    private final WinningLotto winningLotto;
-    private final LottoResultCalculator lottoResultCalculator = new LottoResultCalculator();
+    private LottoPurchaseService lottoPurchaseService;
+    private WinningLottoService winningLottoService;
+    private RateOfReturnService rateOfReturnService;
 
-    public LottoMainService(Lottos lottos, WinningLotto winningLotto) {
-        this.lottos = lottos;
-        this.winningLotto = winningLotto;
+    public LottoMainService() {
+        this.lottoPurchaseService = new LottoPurchaseService();
+        this.winningLottoService = new WinningLottoService();
+        this.rateOfReturnService = new RateOfReturnService();
+    }
+
+    public ResponseLottosDto buyLottos(long purchaseAmount) {
+        Lottos lottos = lottoPurchaseService.buy(purchaseAmount);
+        return ResponseLottosDto.of(lottos);
     }
 
     public long calculateTotalWinningAmount() {

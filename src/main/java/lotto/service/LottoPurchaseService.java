@@ -3,8 +3,13 @@ package lotto.service;
 import lotto.model.Lottos;
 
 public class LottoPurchaseService {
-    public static Lottos purchaseLottos(long inputPurchaseAmount) {
-        long lottoCount = inputPurchaseAmount / 1_000;
+
+    public Lottos buy(long inputPurchaseAmount) {
+        long lottoCount = getLottoCount(inputPurchaseAmount);
         return Lottos.createRandomLottos(lottoCount);
+    }
+
+    private long getLottoCount(long inputPurchaseAmount) {
+        return inputPurchaseAmount / 1_000;
     }
 }

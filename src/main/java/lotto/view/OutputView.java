@@ -2,6 +2,8 @@ package lotto.view;
 
 import java.text.DecimalFormat;
 import lotto.dto.PurchasedLottosDto;
+import lotto.dto.ResponseLottosDto;
+import lotto.dto.ResponseLottosDto.InnerLotto;
 import lotto.dto.WinningStatisticsDto;
 
 public class OutputView {
@@ -12,13 +14,14 @@ public class OutputView {
         print("구입금액을 입력해 주세요.");
     }
 
-    public void printPurchaseCountMessage(int count) {
-        System.out.println(count + "개를 구매했습니다.");
+    public void printPurchaseCountMessage(ResponseLottosDto responseLottosDto) {
+        System.out.println(responseLottosDto.getLottoCount() + "개를 구매했습니다.");
     }
 
-    public void printPurchasedLotto(PurchasedLottosDto lottosDto) {
-        lottosDto.getLottos()
-                .forEach(lotto -> print(lotto.getNumbers().toString()));
+    public void printPurchasedLottos(ResponseLottosDto responseLottosDto) {
+        responseLottosDto.getResponseLottos().stream()
+                .map(InnerLotto::getNumbers)
+                .forEach(numbers -> print(numbers.toString()));
     }
 
     public void printWinningNumberMessage() {
