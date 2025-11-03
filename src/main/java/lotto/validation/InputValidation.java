@@ -13,10 +13,13 @@ import static lotto.constant.ErrorMessageConstant.ERROR_PURCHASE_MONEY_NOT_NUMBE
 import static lotto.constant.ErrorMessageConstant.ERROR_PURCHASE_MONEY_ZERO;
 import static lotto.constant.ErrorMessageConstant.ERROR_WINNING_NUMBER_FORMAT_INVALID;
 
-public class InputValidation {
+public final class InputValidation {
 
     public static final String NUMBER_REGEX = "\\d+";
     public static final String WINNING_NUMBER_REGEX = "^\\d+(\\s*,\\s*\\d+){5}$";
+
+    private InputValidation() {
+    }
 
     public static void validateNumberValue(String inputLottoPurchaseMoney) {
         if (inputLottoPurchaseMoney.matches(NUMBER_REGEX)) {

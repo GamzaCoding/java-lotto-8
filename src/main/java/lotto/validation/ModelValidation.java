@@ -12,7 +12,10 @@ import static lotto.constant.ErrorMessageConstant.ERROR_LOTTO_NUMBER_RANGE;
 import java.util.List;
 import java.util.Set;
 
-public class ModelValidation {
+public final class ModelValidation {
+
+    private ModelValidation() {
+    }
 
     public static void validateBonusNumberNotInWinningNumbers(List<Integer> winningNumbers, int bonusNumber) {
         if (winningNumbers.contains(bonusNumber)) {
