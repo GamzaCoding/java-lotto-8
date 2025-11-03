@@ -38,7 +38,7 @@ public class Controller {
     private ResponseLottosDto requestPurchaseLottos() {
         outputView.printPurchaseAmountMessage();
         String inputPurchaseAmount = inputView.inputPurchaseAmount();
-        long inputPurchaseAmountLong = Long.parseLong(inputPurchaseAmount);// 이 부분 고민해야 한다.
+        long inputPurchaseAmountLong = Long.parseLong(inputPurchaseAmount);
 
         return lottoMainService.buyLottos(inputPurchaseAmountLong);
     }

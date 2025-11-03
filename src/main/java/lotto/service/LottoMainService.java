@@ -26,17 +26,14 @@ public class LottoMainService {
         return ResponseLottosDto.of(lottos);
     }
 
+    public WinningLottoDto calculateWinningLotto(List<Integer> winningNumbers, int bonusNumber) {
+        return WinningLottoDto.from(winningNumbers, bonusNumber);
+    }
+
     public WinningStatisticsDto calculateWinningStatistics(WinningLottoDto winningLottoDto,
                                                            ResponseLottosDto responseLottosDto) {
         Map<Rank, Integer> rankCountStatistics = calculateRankAndCount(winningLottoDto, responseLottosDto);
         return WinningStatisticsDto.from(rankCountStatistics);
-    }
-
-    private Map<Rank, Integer> calculateRankAndCount(WinningLottoDto winningLottoDto,
-                                                     ResponseLottosDto responseLottosDto) {
-        WinningLotto winningLotto = winningLottoService.convertToWinningLotto(winningLottoDto);
-        Lottos lottos = lottoPurchaseService.convertToLottos(responseLottosDto);
-        return winningLottoService.calculateRankCount(winningLotto, lottos);
     }
 
     public RateOfReturnDto calculateRateOfReturn(WinningStatisticsDto winningStatisticsDto,
@@ -45,7 +42,10 @@ public class LottoMainService {
         return RateOfReturnDto.of(rateOfReturn);
     }
 
-    public WinningLottoDto calculateWinningLotto(List<Integer> winningNumbers, int bonusNumber) {
-        return WinningLottoDto.from(winningNumbers, bonusNumber);
+    private Map<Rank, Integer> calculateRankAndCount(WinningLottoDto winningLottoDto,
+                                                     ResponseLottosDto responseLottosDto) {
+        WinningLotto winningLotto = winningLottoService.convertToWinningLotto(winningLottoDto);
+        Lottos lottos = lottoPurchaseService.convertToLottos(responseLottosDto);
+        return winningLottoService.calculateRankCount(winningLotto, lottos);
     }
 }
