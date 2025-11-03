@@ -17,11 +17,11 @@ public class WinningLottoTest {
         List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
         int bonusNumber = 10;
         WinningLotto winningLotto = WinningLotto.makeWinningLotto(winningNumbers, bonusNumber);
-        Lotto lotto = Lotto.makeLotto(List.of(1, 2, 3, 4, 5, 6));
+        Lotto lotto = Lotto.manualLotto(List.of(1, 2, 3, 4, 5, 6));
 
         //when
         int expectMatchCount = 6;
-        int actualMatchCount = winningLotto.calculateMatchCount(lotto);
+        int actualMatchCount = lotto.countMatchWith(winningLotto);
 
         //then
         assertThat(expectMatchCount).isEqualTo(actualMatchCount);
@@ -35,13 +35,13 @@ public class WinningLottoTest {
         int bonusNumber = 10;
         WinningLotto winningLotto = WinningLotto.makeWinningLotto(winningNumbers, bonusNumber);
 
-        Lotto lotto = Lotto.makeLotto(List.of(1, 2, 3, 4, 5, 10));
+        Lotto lotto = Lotto.manualLotto(List.of(1, 2, 3, 4, 5, 10));
 
         //when
         int expectMatchCount = 5;
         boolean expectBonusCorrect = true;
-        int actualMatchCount = winningLotto.calculateMatchCount(lotto);
-        boolean actualBonusCorrect = winningLotto.checkBonus(lotto);
+        int actualMatchCount = lotto.countMatchWith(winningLotto);
+        boolean actualBonusCorrect = lotto.checkBonusWith(winningLotto);
 
         //then
         assertThat(expectMatchCount).isEqualTo(actualMatchCount);
@@ -56,13 +56,13 @@ public class WinningLottoTest {
         int bonusNumber = 10;
 
         WinningLotto winningLotto = WinningLotto.makeWinningLotto(winningNumbers, bonusNumber);
-        Lotto lotto = Lotto.makeLotto(List.of(1, 2, 3, 4, 5, 6));
+        Lotto lotto = Lotto.manualLotto(List.of(1, 2, 3, 4, 5, 6));
 
         //when
         int expectMatchCount = 5;
         boolean expectBonusCorrect = false;
-        int actualMatchCount = winningLotto.calculateMatchCount(lotto);
-        boolean actualBonusCorrect = winningLotto.checkBonus(lotto);
+        int actualMatchCount = lotto.countMatchWith(winningLotto);
+        boolean actualBonusCorrect = lotto.checkBonusWith(winningLotto);
 
         //then
         assertThat(expectMatchCount).isEqualTo(actualMatchCount);
@@ -76,11 +76,11 @@ public class WinningLottoTest {
         List<Integer> winningNumbers = List.of(1, 2, 3, 4, 44, 45);
         int bonusNumber = 10;
         WinningLotto winningLotto = WinningLotto.makeWinningLotto(winningNumbers, bonusNumber);
-        Lotto lotto = Lotto.makeLotto(List.of(1, 2, 3, 4, 5, 6));
+        Lotto lotto = Lotto.manualLotto(List.of(1, 2, 3, 4, 5, 6));
 
         //when
         int expectMatchCount = 4;
-        int actualMatchCount = winningLotto.calculateMatchCount(lotto);
+        int actualMatchCount = lotto.countMatchWith(winningLotto);
 
         //then
         assertThat(expectMatchCount).isEqualTo(actualMatchCount);
@@ -93,11 +93,11 @@ public class WinningLottoTest {
         List<Integer> winningNumbers = List.of(1, 2, 3, 43, 44, 45);
         int bonusNumber = 10;
         WinningLotto winningLotto = WinningLotto.makeWinningLotto(winningNumbers, bonusNumber);
-        Lotto lotto = Lotto.makeLotto(List.of(1, 2, 3, 4, 5, 6));
+        Lotto lotto = Lotto.manualLotto(List.of(1, 2, 3, 4, 5, 6));
 
         //when
         int expectMatchCount = 3;
-        int actualMatchCount = winningLotto.calculateMatchCount(lotto);
+        int actualMatchCount = lotto.countMatchWith(winningLotto);
 
         //then
         assertThat(expectMatchCount).isEqualTo(actualMatchCount);
@@ -110,11 +110,11 @@ public class WinningLottoTest {
         List<Integer> winningNumbers = List.of(1, 2, 42, 43, 44, 45);
         int bonusNumber = 10;
         WinningLotto winningLotto = WinningLotto.makeWinningLotto(winningNumbers, bonusNumber);
-        Lotto lotto = Lotto.makeLotto(List.of(1, 2, 3, 4, 5, 6));
+        Lotto lotto = Lotto.manualLotto(List.of(1, 2, 3, 4, 5, 6));
 
         //when
         int expectMatchCount = 2;
-        int actualMatchCount = winningLotto.calculateMatchCount(lotto);
+        int actualMatchCount = lotto.countMatchWith(winningLotto);
 
         //then
         assertThat(expectMatchCount).isEqualTo(actualMatchCount);
@@ -127,11 +127,11 @@ public class WinningLottoTest {
         List<Integer> winningNumbers = List.of(1, 41, 42, 43, 44, 45);
         int bonusNumber = 10;
         WinningLotto winningLotto = WinningLotto.makeWinningLotto(winningNumbers, bonusNumber);
-        Lotto lotto = Lotto.makeLotto(List.of(1, 2, 3, 4, 5, 6));
+        Lotto lotto = Lotto.manualLotto(List.of(1, 2, 3, 4, 5, 6));
 
         //when
         int expectMatchCount = 1;
-        int actualMatchCount = winningLotto.calculateMatchCount(lotto);
+        int actualMatchCount = lotto.countMatchWith(winningLotto);
 
         //then
         assertThat(expectMatchCount).isEqualTo(actualMatchCount);
@@ -144,10 +144,10 @@ public class WinningLottoTest {
         List<Integer> winningNumbers = List.of(40, 41, 42, 43, 44, 45);
         int bonusNumber = 10;
         WinningLotto winningLotto = WinningLotto.makeWinningLotto(winningNumbers, bonusNumber);
-        Lotto lotto = Lotto.makeLotto(List.of(1, 2, 3, 4, 5, 6));
+        Lotto lotto = Lotto.manualLotto(List.of(1, 2, 3, 4, 5, 6));
         //when
         int expectMatchCount = 0;
-        int actualMatchCount = winningLotto.calculateMatchCount(lotto);
+        int actualMatchCount = lotto.countMatchWith(winningLotto);
 
         //then
         assertThat(expectMatchCount).isEqualTo(actualMatchCount);

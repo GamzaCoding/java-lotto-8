@@ -9,18 +9,18 @@ public class LottoPurchaseService {
     public static final int AMOUNT_OF_ONE_LOTTO = 1_000;
 
     public Lottos purchaseLottos(long inputPurchaseAmount) {
-        long lottoCount = getLottoCount(inputPurchaseAmount);
-        return Lottos.createRandomLottos(lottoCount);
+        int lottoCount = getLottoCount(inputPurchaseAmount);
+        return Lottos.generate(lottoCount);
     }
 
     public Lottos convertToLottos(ResponseLottosDto responseLottosDto) {
         List<Lotto> lottos = responseLottosDto.lottos().stream()
-                .map(innerLotto -> Lotto.makeLotto(innerLotto.numbers()))
+                .map(innerLotto -> Lotto.manualLotto(innerLotto.numbers()))
                 .toList();
-        return Lottos.makeLottos(lottos);
+        return Lottos.of(lottos);
     }
 
-    private long getLottoCount(long inputPurchaseAmount) {
-        return inputPurchaseAmount / AMOUNT_OF_ONE_LOTTO;
+    private int getLottoCount(long inputPurchaseAmount) {
+        return (int)inputPurchaseAmount / AMOUNT_OF_ONE_LOTTO;
     }
 }

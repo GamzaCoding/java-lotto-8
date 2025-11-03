@@ -42,13 +42,13 @@ public class OutputView {
 
         winningSattisticeDto.rankCountStatistics()
                 .forEach((rank, count) -> {
-                    if (rank.getCount() == 5 && rank.prizeMoney() == 30_000_000) {
+                    if (rank.getMatchCount() == 5 && rank.prizeMoney() == 30_000_000) {
                         System.out.println(
-                                rank.getCount() + "개 일치, 보너스 볼 일치 (" + decimalFormat.format(rank.prizeMoney()) + "원) - "
+                                rank.getMatchCount() + "개 일치, 보너스 볼 일치 (" + decimalFormat.format(rank.prizeMoney()) + "원) - "
                                         + count + "개");
                     } else { // 이부분 수정해야 한다.
                         System.out.println(
-                                rank.getCount() + "개 일치 (" + decimalFormat.format(rank.prizeMoney()) + "원) - " + count
+                                rank.getMatchCount() + "개 일치 (" + decimalFormat.format(rank.prizeMoney()) + "원) - " + count
                                         + "개");
                     }
                 });

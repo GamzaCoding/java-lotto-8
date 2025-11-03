@@ -24,14 +24,14 @@ public class WinningLottoService {
 
     private static Map<Rank, Integer> initializeRankCountStatistics() {
         Map<Rank, Integer> rankCountStatistics = new LinkedHashMap<>();
-        Rank.getMeaningfulRanks()
+        Rank.getWinningRanks()
                 .forEach(rank -> rankCountStatistics.put(rank, DEFAULT_COUNT));
         return rankCountStatistics;
     }
 
     public Rank calculateRank(WinningLotto winningLotto, Lotto lotto) {
-        int matchCount = winningLotto.calculateMatchCount(lotto);
-        boolean matchBonus = winningLotto.checkBonus(lotto);
+        int matchCount = lotto.countMatchWith(winningLotto);
+        boolean matchBonus = lotto.checkBonusWith(winningLotto);
         return Rank.findByCount(matchCount, matchBonus);
     }
 

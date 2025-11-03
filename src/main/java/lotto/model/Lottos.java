@@ -1,29 +1,31 @@
 package lotto.model;
 
 import java.util.List;
-import java.util.stream.LongStream;
+import java.util.stream.IntStream;
 
 public class Lottos {
+    public static final int START_INDEX = 0;
+
     private final List<Lotto> lottos;
 
     private Lottos(List<Lotto> lottos) {
         this.lottos = lottos;
     }
 
-    public static Lottos createRandomLottos(long count) {
-        List<Lotto> lottosByRandom = LongStream
-                .range(0, count)
-                .mapToObj(i -> Lotto.createRandomLotto())
+    public static Lottos generate(int count) {
+        List<Lotto> lottosByRandom = IntStream
+                .range(START_INDEX, count)
+                .mapToObj(i -> Lotto.automaticLotto())
                 .toList();
 
         return new Lottos(lottosByRandom);
     }
 
-    public static Lottos makeLottos(List<Lotto> lottos) {
+    public static Lottos of(List<Lotto> lottos) {
         return new Lottos(lottos);
     }
 
     public List<Lotto> getLottos() {
-        return List.copyOf(lottos); // 얕은 복사 같은데.. 흠...
+        return List.copyOf(lottos);
     }
 }

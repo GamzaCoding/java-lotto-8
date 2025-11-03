@@ -8,40 +8,41 @@ public enum Rank {
     THIRD(5, 1_500_000),
     FOURTH(4, 50_000),
     FIFTH(3, 5_000),
-    NOTHING(0, 0) // 이 부분도 추가로 확인해야 한다.
-    ;
+    NOTHING(0, 0);
 
-    private final int count;
+    private final int matchCount;
     private final int prizeMoney;
 
-    Rank(int count, int prizeMoney) {
-        this.count = count;
+    Rank(int matchCount, int prizeMoney) {
+        this.matchCount = matchCount;
         this.prizeMoney = prizeMoney;
     }
 
-    public static List<Rank> getMeaningfulRanks() {
+    public static List<Rank> getWinningRanks() {
         return List.of(FIRST, SECOND, THIRD, FOURTH, FIFTH);
     }
 
-    public static Rank findByCount(int count, boolean bonusMatch) {
-        if (count == 5 && bonusMatch) {
-            return Rank.SECOND;
+    public static Rank findByCount(int matchCount, boolean bonusMatch) {
+        if (matchCount == FIRST.matchCount) {
+            return FIRST;
         }
-
-        if (count == 5 && !bonusMatch) {
-            return Rank.THIRD;
+        if (matchCount == SECOND.matchCount && bonusMatch) {
+            return SECOND;
         }
-
-        for (Rank rank : values()) {
-            if (rank.count == count) {
-                return rank;
-            }
+        if (matchCount == SECOND.matchCount) {
+            return THIRD;
         }
-        return Rank.NOTHING;
+        if (matchCount == FOURTH.matchCount) {
+            return FOURTH;
+        }
+        if (matchCount == FIFTH.matchCount) {
+            return FIFTH;
+        }
+        return NOTHING;
     }
 
-    public int getCount() {
-        return count;
+    public int getMatchCount() {
+        return matchCount;
     }
 
     public int prizeMoney() {

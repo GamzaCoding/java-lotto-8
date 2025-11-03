@@ -88,11 +88,14 @@ public class Controller {
 
     private <T> T process(Supplier<T> supplier) {
         try {
-            return supplier.get();
+            return tryProcess(supplier);
         } catch (IllegalArgumentException e) {
             outputView.printExceptionMessage(e.getMessage());
-            process(supplier);
+            return process(supplier);
         }
+    }
+
+    private <T> T tryProcess(Supplier<T> supplier) {
         return supplier.get();
     }
 }

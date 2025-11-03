@@ -32,4 +32,23 @@ public class InputValidation {
         }
         throw new IllegalArgumentException("[ERROR] 당첨 번호로 입력 양식이 틀렸습니다.");
     }
+
+    public static void validateBonusNumberValue(String inputBonusNumber) {
+        if (inputBonusNumber.matches("\\d+")) {
+            return;
+        }
+        throw new IllegalArgumentException("[ERROR] 보너스 번호는 숫자를 입력해야 합니다.");
+    }
+
+    public static void validateBonusNegative(String inputBonusNumber) {
+        if (Integer.parseInt(inputBonusNumber) < 0) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 음수를 입력할 수 없습니다.");
+        }
+    }
+
+    public static void validateZeroBonusNumber(String inputBonusNumber) {
+        if (Integer.parseInt(inputBonusNumber) == 0) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 0원을 입력할 수 없습니다.");
+        }
+    }
 }

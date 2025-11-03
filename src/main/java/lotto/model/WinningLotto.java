@@ -26,13 +26,11 @@ public class WinningLotto {
         return new WinningLotto(winningNumbers, bonusNumber);
     }
 
-    public int calculateMatchCount(Lotto lotto) { // 이부분에 대해서 쫌 더 고민해보자, lotto를 알고 있는게 맞나?
-        return (int) lotto.getNumbers().stream()
-                .filter(winningNumbers::contains)
-                .count();
+    public boolean contains(int number) {
+        return winningNumbers.contains(number);
     }
 
-    public boolean checkBonus(Lotto lotto) {
-        return lotto.getNumbers().contains(bonusNumber);
+    public int getBonusNumber() {
+        return bonusNumber;
     }
 }
