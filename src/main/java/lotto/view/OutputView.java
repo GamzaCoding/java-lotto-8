@@ -1,6 +1,5 @@
 package lotto.view;
 
-
 import static lotto.constant.OutputMessageConstant.BONUS_NUMBER_CORRECT_MESSAGE;
 import static lotto.constant.OutputMessageConstant.BONUS_NUMBER_MESSAGE;
 import static lotto.constant.OutputMessageConstant.PURCHASE_AMOUNT_MESSAGE;
@@ -77,15 +76,15 @@ public class OutputView {
         System.out.printf(RATE_OF_RETURN_FORMAT.getMessage(), rateOfReturn);
     }
 
+    public void printExceptionMessage(String message) {
+        System.out.println(message);
+    }
+
     private void print(String message) {
         System.out.println(message);
     }
 
     private void printLineBreak() {
         System.out.println();
-    }
-
-    public void printExceptionMessage(String message) {
-        System.out.println(message);
     }
 }

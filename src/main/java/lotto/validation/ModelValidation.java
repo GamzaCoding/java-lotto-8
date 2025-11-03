@@ -37,7 +37,7 @@ public final class ModelValidation {
     }
 
     public static void validateDuplicateNumber(List<Integer> numbers) {
-        if (numbers.size() != Set.copyOf(numbers).size()) {
+        if (isDuplicate(numbers)) {
             throw new IllegalArgumentException(ERROR + ERROR_LOTTO_NUMBER_DUPLICATE);
         }
     }
@@ -45,5 +45,9 @@ public final class ModelValidation {
     private static boolean isCorrectRange(List<Integer> numbers) {
         return numbers.stream()
                 .allMatch(number -> MIN_NUMBER <= number && number <= MAX_NUMBER);
+    }
+
+    private static boolean isDuplicate(List<Integer> numbers) {
+        return numbers.size() != Set.copyOf(numbers).size();
     }
 }

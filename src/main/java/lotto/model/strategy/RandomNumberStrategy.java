@@ -8,6 +8,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
 
 public class RandomNumberStrategy implements LottoNumberStrategy{
+
     @Override
     public List<Integer> generateNumbers() {
         return Randoms.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, LOTTO_SIZE);
