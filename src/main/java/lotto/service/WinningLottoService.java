@@ -13,19 +13,14 @@ public class WinningLottoService {
     public static final int DEFAULT_COUNT = 0;
     public static final int ONE_COUNT = 1;
 
-    public Map<Rank, Integer> calculate(WinningLotto winningLotto, Lottos lottos) {
+    public Map<Rank, Integer> calculateRankCount(WinningLotto winningLotto, Lottos lottos) {
         Map<Rank, Integer> rankCountStatistics = initializeRankCountStatistics();
-        for (Lotto lotto : lottos.getLottos()) {
-            Rank rank = calculateRank(winningLotto, lotto);
-            rankCountStatistics.merge(rank, ONE_COUNT, Integer::sum);
-        }
-        return rankCountStatistics;
-    }
 
-    private static Map<Rank, Integer> initializeRankCountStatistics() {
-        Map<Rank, Integer> rankCountStatistics = new LinkedHashMap<>();
-        Rank.getWinningRanks()
-                .forEach(rank -> rankCountStatistics.put(rank, DEFAULT_COUNT));
+        lottos.getLottos().stream()
+                .map(lotto -> calculateRank(winningLotto, lotto))
+                .filter(rank -> rank != Rank.NOTHING)
+                .forEach(rank -> rankCountStatistics.merge(rank, ONE_COUNT, Integer::sum));
+
         return rankCountStatistics;
     }
 
@@ -33,6 +28,13 @@ public class WinningLottoService {
         int matchCount = lotto.countMatchWith(winningLotto);
         boolean matchBonus = lotto.checkBonusWith(winningLotto);
         return Rank.findByCount(matchCount, matchBonus);
+    }
+
+    private static Map<Rank, Integer> initializeRankCountStatistics() {
+        Map<Rank, Integer> rankCountStatistics = new LinkedHashMap<>();
+        Rank.getRanks()
+                .forEach(rank -> rankCountStatistics.put(rank, DEFAULT_COUNT));
+        return rankCountStatistics;
     }
 
     public WinningLotto convertToWinningLotto(WinningLottoDto winningLottoDto) {

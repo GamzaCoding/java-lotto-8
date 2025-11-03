@@ -35,7 +35,7 @@ public class LottoMainService {
     private Map<Rank, Integer> calculateRankAndCount(WinningLottoDto winningLottoDto, ResponseLottosDto responseLottosDto) {
         WinningLotto winningLotto = winningLottoService.convertToWinningLotto(winningLottoDto);
         Lottos lottos = lottoPurchaseService.convertToLottos(responseLottosDto);
-        return winningLottoService.calculate(winningLotto, lottos);
+        return winningLottoService.calculateRankCount(winningLotto, lottos);
     }
 
     public RateOfReturnDto calculateRateOfReturn(WinningStatisticsDto winningStatisticsDto,
