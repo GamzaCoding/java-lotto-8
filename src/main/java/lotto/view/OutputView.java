@@ -38,12 +38,11 @@ public class OutputView {
         print("보너스 번호를 입력해 주세요.");
     }
 
-    public void printWinningStatistics(WinningStatisticsDto winningSattisticeDto) {
+    public void printWinningStatistics(WinningStatisticsDto winningStatisticsDto) {
         printLineBreak();
-        print("당첨 통계");
-        print("---");
+        print("당첨 통계\n---");
 
-        winningSattisticeDto.winningRankInfos().stream()
+        winningStatisticsDto.winningRankInfos().stream()
                 .sorted(Comparator.comparingInt(WinningRankInfo::matchCount).reversed())
                 .map(this::formatRankStatistics)
                 .forEach(System.out::println);
