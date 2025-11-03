@@ -1,12 +1,13 @@
 package lotto.service;
 
+import static lotto.util.Constant.AMOUNT_OF_ONE_LOTTO;
+
 import java.util.List;
 import lotto.dto.ResponseLottosDto;
 import lotto.model.Lotto;
 import lotto.model.Lottos;
 
 public class LottoPurchaseService {
-    public static final int AMOUNT_OF_ONE_LOTTO = 1_000;
 
     public Lottos purchaseLottos(long inputPurchaseAmount) {
         int lottoCount = getLottoCount(inputPurchaseAmount);

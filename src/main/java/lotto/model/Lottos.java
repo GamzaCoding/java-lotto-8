@@ -1,10 +1,11 @@
 package lotto.model;
 
+import static lotto.util.Constant.START_INDEX;
+
 import java.util.List;
 import java.util.stream.IntStream;
 
 public class Lottos {
-    public static final int START_INDEX = 0;
 
     private final List<Lotto> lottos;
 

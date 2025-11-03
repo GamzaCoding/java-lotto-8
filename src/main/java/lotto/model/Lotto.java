@@ -1,5 +1,8 @@
 package lotto.model;
 
+import static lotto.util.Constant.LOTTO_SIZE;
+import static lotto.util.Constant.MAX_NUMBER;
+import static lotto.util.Constant.MIN_NUMBER;
 import static lotto.validation.ModelValidation.validateDuplicateNumber;
 import static lotto.validation.ModelValidation.validateLottoNumberCount;
 import static lotto.validation.ModelValidation.validateLottoNumberRange;
@@ -8,10 +11,6 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
 
 public class Lotto {
-    public static final int MIN_NUMBER = 1;
-    public static final int MAX_NUMBER = 45;
-    public static final int LOTTO_SIZE = 6;
-
     private final List<Integer> numbers;
 
     private Lotto(List<Integer> numbers) {

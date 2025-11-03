@@ -1,5 +1,8 @@
 package lotto.service;
 
+import static lotto.util.Constant.DEFAULT_COUNT;
+import static lotto.util.Constant.ONE_COUNT;
+
 import java.util.LinkedHashMap;
 import java.util.Map;
 import lotto.dto.WinningLottoDto;
@@ -9,9 +12,6 @@ import lotto.model.Rank;
 import lotto.model.WinningLotto;
 
 public class WinningLottoService {
-
-    public static final int DEFAULT_COUNT = 0;
-    public static final int ONE_COUNT = 1;
 
     public Map<Rank, Integer> calculateRankCount(WinningLotto winningLotto, Lottos lottos) {
         Map<Rank, Integer> rankCountStatistics = initializeRankCountStatistics();
