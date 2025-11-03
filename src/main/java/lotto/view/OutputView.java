@@ -1,17 +1,17 @@
 package lotto.view;
 
 import java.text.DecimalFormat;
-import java.util.Map;
+import java.util.Comparator;
 import lotto.dto.RateOfReturnDto;
 import lotto.dto.ResponseLottosDto;
 import lotto.dto.ResponseLottosDto.InnerLotto;
 import lotto.dto.WinningStatisticsDto;
-import lotto.model.Rank;
+import lotto.dto.WinningStatisticsDto.WinningRankInfo;
 
 public class OutputView {
 
     private final DecimalFormat prizeMoneyFormat = new DecimalFormat("#,###");
-    DecimalFormat rateOfReturnFormat = new DecimalFormat("#0.0");
+    private final DecimalFormat rateOfReturnFormat = new DecimalFormat("#0.0");
 
     public void printPurchaseAmountMessage() {
         print("구입금액을 입력해 주세요.");
@@ -42,22 +42,22 @@ public class OutputView {
         printLineBreak();
         print("당첨 통계");
         print("---");
-        winningSattisticeDto.rankCountStatistics().entrySet().stream()
-                        .map(this::formatRankStatistics).forEach(System.out::println);
+
+        winningSattisticeDto.winningRankInfos().stream()
+                .sorted(Comparator.comparingInt(WinningRankInfo::matchCount).reversed())
+                .map(this::formatRankStatistics)
+                .forEach(System.out::println);
     }
 
-    private String formatRankStatistics(Map.Entry<Rank, Integer> rankCountStatistics) {
-        Rank rank = rankCountStatistics.getKey();
-        int count = rankCountStatistics.getValue();
+    private String formatRankStatistics(WinningRankInfo info) {
         String bonusText = "";
 
-        if(rank == Rank.SECOND) {
+        if (info.bonus()) {
             bonusText = ", 보너스 볼 일치";
-
         }
 
-        return rank.getMatchCount() + "개 일치" + bonusText + " ("
-                + prizeMoneyFormat.format(rank.prizeMoney()) + "원) - " + count + "개";
+        return info.matchCount() + "개 일치" + bonusText + " (" + prizeMoneyFormat.format(info.prizeMoney()) + "원) - " +
+                info.count() + "개";
     }
 
     public void printRateOfReturn(RateOfReturnDto rateOfReturnDto) {

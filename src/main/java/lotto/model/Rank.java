@@ -18,8 +18,12 @@ public enum Rank {
         this.prizeMoney = prizeMoney;
     }
 
+    public static boolean isSecond(Rank rank) {
+        return rank == Rank.SECOND;
+    }
+
     public static List<Rank> getRanks() {
-        return List.of(FIRST, SECOND, THIRD, FOURTH, FIFTH, NOTHING);
+        return List.of(FIRST, SECOND, THIRD, FOURTH, FIFTH);
     }
 
     public static Rank findByCount(int matchCount, boolean bonusMatch) {

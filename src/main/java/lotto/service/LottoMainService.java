@@ -29,7 +29,7 @@ public class LottoMainService {
     public WinningStatisticsDto calculateWinningStatistics(WinningLottoDto winningLottoDto,
                                                            ResponseLottosDto responseLottosDto) {
         Map<Rank, Integer> rankCountStatistics = calculateRankAndCount(winningLottoDto, responseLottosDto);
-        return WinningStatisticsDto.of(rankCountStatistics);
+        return WinningStatisticsDto.from(rankCountStatistics);
     }
 
     private Map<Rank, Integer> calculateRankAndCount(WinningLottoDto winningLottoDto, ResponseLottosDto responseLottosDto) {
