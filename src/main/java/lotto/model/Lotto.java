@@ -1,14 +1,11 @@
 package lotto.model;
 
-import static lotto.constant.Constant.LOTTO_SIZE;
-import static lotto.constant.Constant.MAX_NUMBER;
-import static lotto.constant.Constant.MIN_NUMBER;
 import static lotto.validation.ModelValidation.validateDuplicateNumber;
 import static lotto.validation.ModelValidation.validateLottoNumberCount;
 import static lotto.validation.ModelValidation.validateLottoNumberRange;
 
-import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
+import lotto.model.strategy.LottoNumberStrategy;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -21,8 +18,8 @@ public class Lotto {
         this.numbers = numbers;
     }
 
-    public static Lotto automaticLotto() {
-        List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, LOTTO_SIZE);
+    public static Lotto automaticLotto(LottoNumberStrategy lottoNumberStrategy) {
+        List<Integer> lottoNumbers = lottoNumberStrategy.generateNumbers();
         return new Lotto(lottoNumbers.stream().sorted().toList());
     }
 

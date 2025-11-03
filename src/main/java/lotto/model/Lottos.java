@@ -4,6 +4,7 @@ import static lotto.constant.Constant.START_INDEX;
 
 import java.util.List;
 import java.util.stream.IntStream;
+import lotto.model.strategy.LottoNumberStrategy;
 
 public class Lottos {
 
@@ -13,10 +14,10 @@ public class Lottos {
         this.lottos = lottos;
     }
 
-    public static Lottos generateAutomaticLottos(int count) {
+    public static Lottos generateAutomaticLottos(int count, LottoNumberStrategy lottoNumberStrategy) {
         List<Lotto> automaticLottos = IntStream
                 .range(START_INDEX, count)
-                .mapToObj(i -> Lotto.automaticLotto())
+                .mapToObj(i -> Lotto.automaticLotto(lottoNumberStrategy))
                 .toList();
 
         return new Lottos(automaticLottos);

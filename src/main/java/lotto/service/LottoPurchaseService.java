@@ -6,12 +6,20 @@ import java.util.List;
 import lotto.dto.ResponseLottosDto;
 import lotto.model.Lotto;
 import lotto.model.Lottos;
+import lotto.model.strategy.LottoNumberStrategy;
+import lotto.model.strategy.RandomNumberStrategy;
 
 public class LottoPurchaseService {
 
+    private final LottoNumberStrategy lottoNumberStrategy;
+
+    public LottoPurchaseService() {
+        this.lottoNumberStrategy = new RandomNumberStrategy();
+    }
+
     public Lottos purchaseLottos(long inputPurchaseAmount) {
         int lottoCount = getLottoCount(inputPurchaseAmount);
-        return Lottos.generateAutomaticLottos(lottoCount);
+        return Lottos.generateAutomaticLottos(lottoCount, lottoNumberStrategy);
     }
 
     public Lottos convertToLottos(ResponseLottosDto responseLottosDto) {
