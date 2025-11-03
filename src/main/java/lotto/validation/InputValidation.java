@@ -1,17 +1,17 @@
 package lotto.validation;
 
-import static lotto.util.Constant.THOUSAND_NUMBER;
-import static lotto.util.Constant.ZERO_MONEY;
-import static lotto.util.Constant.ZERO_NUMBER;
-import static lotto.util.ErrorMessageConstant.ERROR;
-import static lotto.util.ErrorMessageConstant.ERROR_BONUS_NUMBER_NEGATIVE;
-import static lotto.util.ErrorMessageConstant.ERROR_BONUS_NUMBER_NOT_NUMBER;
-import static lotto.util.ErrorMessageConstant.ERROR_BONUS_NUMBER_ZERO;
-import static lotto.util.ErrorMessageConstant.ERROR_PURCHASE_MONEY_NEGATIVE;
-import static lotto.util.ErrorMessageConstant.ERROR_PURCHASE_MONEY_NOT_DIVISIBLE_BY_THOUSAND;
-import static lotto.util.ErrorMessageConstant.ERROR_PURCHASE_MONEY_NOT_NUMBER;
-import static lotto.util.ErrorMessageConstant.ERROR_PURCHASE_MONEY_ZERO;
-import static lotto.util.ErrorMessageConstant.ERROR_WINNING_NUMBER_FORMAT_INVALID;
+import static lotto.constant.Constant.THOUSAND_NUMBER;
+import static lotto.constant.Constant.ZERO_MONEY;
+import static lotto.constant.Constant.ZERO_NUMBER;
+import static lotto.constant.ErrorMessageConstant.ERROR;
+import static lotto.constant.ErrorMessageConstant.ERROR_BONUS_NUMBER_NEGATIVE;
+import static lotto.constant.ErrorMessageConstant.ERROR_BONUS_NUMBER_NOT_NUMBER;
+import static lotto.constant.ErrorMessageConstant.ERROR_BONUS_NUMBER_ZERO;
+import static lotto.constant.ErrorMessageConstant.ERROR_PURCHASE_MONEY_NEGATIVE;
+import static lotto.constant.ErrorMessageConstant.ERROR_PURCHASE_MONEY_NOT_DIVISIBLE_BY_THOUSAND;
+import static lotto.constant.ErrorMessageConstant.ERROR_PURCHASE_MONEY_NOT_NUMBER;
+import static lotto.constant.ErrorMessageConstant.ERROR_PURCHASE_MONEY_ZERO;
+import static lotto.constant.ErrorMessageConstant.ERROR_WINNING_NUMBER_FORMAT_INVALID;
 
 public class InputValidation {
 

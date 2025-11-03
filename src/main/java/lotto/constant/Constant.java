@@ -1,6 +1,11 @@
-package lotto.util;
+package lotto.constant;
 
-public class Constant {
+public final class Constant {
+
+    private Constant() {
+
+    }
+
     public static final int AMOUNT_OF_ONE_LOTTO = 1_000;
     public static final int PERCENT = 100;
     public static final int TENTHS = 1;

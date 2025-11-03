@@ -69,7 +69,8 @@ public class Controller {
         return Integer.parseInt(bonusNumber);
     }
 
-    private WinningStatisticsDto calculateWinningStatistics(WinningLottoDto winningLottoDto, ResponseLottosDto responseLottosDto) {
+    private WinningStatisticsDto calculateWinningStatistics(WinningLottoDto winningLottoDto,
+                                                            ResponseLottosDto responseLottosDto) {
         return lottoMainService.calculateWinningStatistics(winningLottoDto, responseLottosDto);
     }
 

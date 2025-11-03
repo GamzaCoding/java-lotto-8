@@ -1,8 +1,8 @@
 package lotto.service;
 
-import static lotto.util.Constant.AMOUNT_OF_ONE_LOTTO;
-import static lotto.util.Constant.PERCENT;
-import static lotto.util.Constant.TENTHS;
+import static lotto.constant.Constant.AMOUNT_OF_ONE_LOTTO;
+import static lotto.constant.Constant.PERCENT;
+import static lotto.constant.Constant.TENTHS;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;

@@ -32,7 +32,8 @@ public class LottoMainService {
         return WinningStatisticsDto.from(rankCountStatistics);
     }
 
-    private Map<Rank, Integer> calculateRankAndCount(WinningLottoDto winningLottoDto, ResponseLottosDto responseLottosDto) {
+    private Map<Rank, Integer> calculateRankAndCount(WinningLottoDto winningLottoDto,
+                                                     ResponseLottosDto responseLottosDto) {
         WinningLotto winningLotto = winningLottoService.convertToWinningLotto(winningLottoDto);
         Lottos lottos = lottoPurchaseService.convertToLottos(responseLottosDto);
         return winningLottoService.calculateRankCount(winningLotto, lottos);

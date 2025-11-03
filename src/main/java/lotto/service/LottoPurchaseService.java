@@ -1,6 +1,6 @@
 package lotto.service;
 
-import static lotto.util.Constant.AMOUNT_OF_ONE_LOTTO;
+import static lotto.constant.Constant.AMOUNT_OF_ONE_LOTTO;
 
 import java.util.List;
 import lotto.dto.ResponseLottosDto;
@@ -22,6 +22,6 @@ public class LottoPurchaseService {
     }
 
     private int getLottoCount(long inputPurchaseAmount) {
-        return (int)inputPurchaseAmount / AMOUNT_OF_ONE_LOTTO;
+        return (int) inputPurchaseAmount / AMOUNT_OF_ONE_LOTTO;
     }
 }

@@ -1,8 +1,8 @@
 package lotto.model;
 
-import static lotto.util.Constant.LOTTO_SIZE;
-import static lotto.util.Constant.MAX_NUMBER;
-import static lotto.util.Constant.MIN_NUMBER;
+import static lotto.constant.Constant.LOTTO_SIZE;
+import static lotto.constant.Constant.MAX_NUMBER;
+import static lotto.constant.Constant.MIN_NUMBER;
 import static lotto.validation.ModelValidation.validateDuplicateNumber;
 import static lotto.validation.ModelValidation.validateLottoNumberCount;
 import static lotto.validation.ModelValidation.validateLottoNumberRange;

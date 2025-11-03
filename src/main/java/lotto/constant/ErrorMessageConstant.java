@@ -1,6 +1,11 @@
-package lotto.util;
+package lotto.constant;
 
-public class ErrorMessageConstant {
+public final class ErrorMessageConstant {
+
+    private ErrorMessageConstant(){
+
+    }
+
     public static final String ERROR = "[ERROR]";
     public static final String ERROR_BONUS_NUMBER_NOT_IN_WINNING_NUMBERS = "보너스 번호와 당첨 로또 번호는 겹치면 안됩니다.";
     public static final String ERROR_LOTTO_NUMBER_RANGE = "로또 번호는 1~45 사이어야 합니다.";
@@ -14,5 +19,4 @@ public class ErrorMessageConstant {
     public static final String ERROR_BONUS_NUMBER_NOT_NUMBER = "보너스 번호는 숫자를 입력해야 합니다.";
     public static final String ERROR_BONUS_NUMBER_NEGATIVE = "보너스 번호는 음수를 입력할 수 없습니다.";
     public static final String ERROR_BONUS_NUMBER_ZERO = "보너스 번호는 0을 입력할 수 없습니다.";
-
 }

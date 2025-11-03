@@ -1,13 +1,13 @@
 package lotto.validation;
 
-import static lotto.util.Constant.MAX_NUMBER;
-import static lotto.util.Constant.MIN_NUMBER;
-import static lotto.util.Constant.LOTTO_SIZE;
-import static lotto.util.ErrorMessageConstant.ERROR_BONUS_NUMBER_NOT_IN_WINNING_NUMBERS;
-import static lotto.util.ErrorMessageConstant.ERROR;
-import static lotto.util.ErrorMessageConstant.ERROR_LOTTO_NUMBER_COUNT;
-import static lotto.util.ErrorMessageConstant.ERROR_LOTTO_NUMBER_DUPLICATE;
-import static lotto.util.ErrorMessageConstant.ERROR_LOTTO_NUMBER_RANGE;
+import static lotto.constant.Constant.MAX_NUMBER;
+import static lotto.constant.Constant.MIN_NUMBER;
+import static lotto.constant.Constant.LOTTO_SIZE;
+import static lotto.constant.ErrorMessageConstant.ERROR_BONUS_NUMBER_NOT_IN_WINNING_NUMBERS;
+import static lotto.constant.ErrorMessageConstant.ERROR;
+import static lotto.constant.ErrorMessageConstant.ERROR_LOTTO_NUMBER_COUNT;
+import static lotto.constant.ErrorMessageConstant.ERROR_LOTTO_NUMBER_DUPLICATE;
+import static lotto.constant.ErrorMessageConstant.ERROR_LOTTO_NUMBER_RANGE;
 
 import java.util.List;
 import java.util.Set;

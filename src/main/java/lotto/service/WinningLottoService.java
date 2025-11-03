@@ -1,7 +1,7 @@
 package lotto.service;
 
-import static lotto.util.Constant.DEFAULT_COUNT;
-import static lotto.util.Constant.ONE_COUNT;
+import static lotto.constant.Constant.DEFAULT_COUNT;
+import static lotto.constant.Constant.ONE_COUNT;
 
 import java.util.LinkedHashMap;
 import java.util.Map;

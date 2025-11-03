@@ -1,5 +1,15 @@
 package lotto.view;
 
+
+import static lotto.constant.OutputMessageConstant.BONUS_NUMBER_CORRECT_MESSAGE;
+import static lotto.constant.OutputMessageConstant.BONUS_NUMBER_MESSAGE;
+import static lotto.constant.OutputMessageConstant.PURCHASE_AMOUNT_MESSAGE;
+import static lotto.constant.OutputMessageConstant.PURCHASE_COUNT_MESSAGE;
+import static lotto.constant.OutputMessageConstant.RATE_OF_RETURN_FORMAT;
+import static lotto.constant.OutputMessageConstant.WINNING_NUMBER_MESSAGE;
+import static lotto.constant.OutputMessageConstant.WINNING_RESULT_FORMAT;
+import static lotto.constant.OutputMessageConstant.WINNING_STATISTICS_MESSAGE;
+
 import java.text.DecimalFormat;
 import java.util.Comparator;
 import lotto.dto.RateOfReturnDto;
@@ -14,12 +24,12 @@ public class OutputView {
     private final DecimalFormat rateOfReturnFormat = new DecimalFormat("#0.0");
 
     public void printPurchaseAmountMessage() {
-        print("구입금액을 입력해 주세요.");
+        System.out.println(PURCHASE_AMOUNT_MESSAGE.getMessage());
     }
 
     public void printPurchaseCountMessage(ResponseLottosDto responseLottosDto) {
         printLineBreak();
-        System.out.println(responseLottosDto.getLottoCount() + "개를 구매했습니다.");
+        System.out.printf(PURCHASE_COUNT_MESSAGE.getMessage(), responseLottosDto.getLottoCount());
     }
 
     public void printPurchasedLottos(ResponseLottosDto responseLottosDto) {
@@ -30,17 +40,17 @@ public class OutputView {
 
     public void printWinningNumberMessage() {
         printLineBreak();
-        print("당첨 번호를 입력해 주세요.");
+        System.out.println(WINNING_NUMBER_MESSAGE.getMessage());
     }
 
     public void printBonusNumberMessage() {
         printLineBreak();
-        print("보너스 번호를 입력해 주세요.");
+        System.out.println(BONUS_NUMBER_MESSAGE.getMessage());
     }
 
     public void printWinningStatistics(WinningStatisticsDto winningStatisticsDto) {
         printLineBreak();
-        print("당첨 통계\n---");
+        System.out.println(WINNING_STATISTICS_MESSAGE.getMessage());
 
         winningStatisticsDto.winningRankInfos().stream()
                 .sorted(Comparator.comparingInt(WinningRankInfo::matchCount).reversed())
@@ -50,18 +60,21 @@ public class OutputView {
 
     private String formatRankStatistics(WinningRankInfo info) {
         String bonusText = "";
-
         if (info.bonus()) {
-            bonusText = ", 보너스 볼 일치";
+            bonusText = BONUS_NUMBER_CORRECT_MESSAGE.getMessage();
         }
 
-        return info.matchCount() + "개 일치" + bonusText + " (" + prizeMoneyFormat.format(info.prizeMoney()) + "원) - " +
-                info.count() + "개";
+        return String.format(WINNING_RESULT_FORMAT.getMessage(),
+                info.matchCount(),
+                bonusText,
+                prizeMoneyFormat.format(info.prizeMoney()),
+                info.count()
+        );
     }
 
     public void printRateOfReturn(RateOfReturnDto rateOfReturnDto) {
         String rateOfReturn = rateOfReturnFormat.format(rateOfReturnDto.rateOfReturn());
-        System.out.println("총 수익률은 " + rateOfReturn + "%입니다.");
+        System.out.printf(RATE_OF_RETURN_FORMAT.getMessage(), rateOfReturn);
     }
 
     private void print(String message) {

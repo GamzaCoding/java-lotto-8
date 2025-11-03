@@ -1,6 +1,6 @@
 package lotto.model;
 
-import static lotto.util.Constant.START_INDEX;
+import static lotto.constant.Constant.START_INDEX;
 
 import java.util.List;
 import java.util.stream.IntStream;
