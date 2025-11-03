@@ -11,7 +11,7 @@ public class LottoPurchaseService {
 
     public Lottos purchaseLottos(long inputPurchaseAmount) {
         int lottoCount = getLottoCount(inputPurchaseAmount);
-        return Lottos.generate(lottoCount);
+        return Lottos.generateAutomaticLottos(lottoCount);
     }
 
     public Lottos convertToLottos(ResponseLottosDto responseLottosDto) {

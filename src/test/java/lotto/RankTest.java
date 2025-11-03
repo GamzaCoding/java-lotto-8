@@ -6,17 +6,25 @@ import lotto.model.Rank;
 import lotto.model.WinningLotto;
 import lotto.service.WinningLottoService;
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class RankTest {
+
+    private WinningLottoService winningLottoService;
+
+    @BeforeEach
+    void setup() {
+        winningLottoService = new WinningLottoService();
+    }
+
     @Test
     @DisplayName("로또 번호 6개 일치시 FIRST_RANK")
     void 로또_번호_6개_일치시_FIRST_RANK() {
         //given
         Lotto lotto = Lotto.manualLotto(List.of(1, 2, 3, 4, 5, 6));
         WinningLotto winningLotto = WinningLotto.makeWinningLotto(List.of(1, 2, 3, 4, 5, 6), 10);
-        WinningLottoService winningLottoService = new WinningLottoService();
 
         //when
         Rank expectRank = Rank.FIRST;
@@ -32,7 +40,6 @@ public class RankTest {
         //given
         Lotto lotto = Lotto.manualLotto(List.of(1, 2, 3, 4, 5, 10));
         WinningLotto winningLotto = WinningLotto.makeWinningLotto(List.of(1, 2, 3, 4, 5, 6), 10);
-        WinningLottoService winningLottoService = new WinningLottoService();
 
         //when
         Rank expectRank = Rank.SECOND;
@@ -48,7 +55,6 @@ public class RankTest {
         //given
         Lotto lotto = Lotto.manualLotto(List.of(1, 2, 3, 4, 5, 6));
         WinningLotto winningLotto = WinningLotto.makeWinningLotto(List.of(1, 2, 3, 4, 5, 7), 10);
-        WinningLottoService winningLottoService = new WinningLottoService();
 
         //when
         Rank expectRank = Rank.THIRD;
@@ -64,7 +70,6 @@ public class RankTest {
         //given
         Lotto lotto = Lotto.manualLotto(List.of(1, 2, 3, 4, 5, 6));
         WinningLotto winningLotto = WinningLotto.makeWinningLotto(List.of(1, 2, 3, 4, 11, 12), 10);
-        WinningLottoService winningLottoService = new WinningLottoService();
 
         //when
         Rank expectRank = Rank.FOURTH;
@@ -80,7 +85,6 @@ public class RankTest {
         //given
         Lotto lotto = Lotto.manualLotto(List.of(1, 2, 3, 11, 12, 13));
         WinningLotto winningLotto = WinningLotto.makeWinningLotto(List.of(1, 2, 3, 4, 5, 6), 10);
-        WinningLottoService winningLottoService = new WinningLottoService();
 
         //when
         Rank expectRank = Rank.FIFTH;
@@ -96,7 +100,6 @@ public class RankTest {
         //given
         Lotto lotto = Lotto.manualLotto(List.of(1, 2, 11, 12, 13, 14));
         WinningLotto winningLotto = WinningLotto.makeWinningLotto(List.of(1, 2, 3, 4, 5, 6), 10);
-        WinningLottoService winningLottoService = new WinningLottoService();
 
         //when
         Rank expectRank = Rank.NOTHING;
@@ -112,7 +115,6 @@ public class RankTest {
         //given
         Lotto lotto = Lotto.manualLotto(List.of(1, 11, 12, 13, 14, 15));
         WinningLotto winningLotto = WinningLotto.makeWinningLotto(List.of(1, 2, 3, 4, 5, 6), 10);
-        WinningLottoService winningLottoService = new WinningLottoService();
 
         //when
         Rank expectRank = Rank.NOTHING;
@@ -128,7 +130,6 @@ public class RankTest {
         //given
         Lotto lotto = Lotto.manualLotto(List.of(10, 11, 12, 13, 14, 15));
         WinningLotto winningLotto = WinningLotto.makeWinningLotto(List.of(1, 2, 3, 4, 5, 6), 10);
-        WinningLottoService winningLottoService = new WinningLottoService();
 
         //when
         Rank expectRank = Rank.NOTHING;

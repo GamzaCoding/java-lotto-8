@@ -13,13 +13,13 @@ public class Lottos {
         this.lottos = lottos;
     }
 
-    public static Lottos generate(int count) {
-        List<Lotto> lottosByRandom = IntStream
+    public static Lottos generateAutomaticLottos(int count) {
+        List<Lotto> automaticLottos = IntStream
                 .range(START_INDEX, count)
                 .mapToObj(i -> Lotto.automaticLotto())
                 .toList();
 
-        return new Lottos(lottosByRandom);
+        return new Lottos(automaticLottos);
     }
 
     public static Lottos of(List<Lotto> lottos) {
